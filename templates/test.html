@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Test</h1>
+    <form action="{{ url_for('test') }}" method="post">
+        <p>{{ question['text'] }}</p>
+        <input type="text" name="answer" required>
+        <button type="submit">Submit</button>
+    </form>
+    {% if show_answer %}
+        <p>Answer: {{ show_answer }}</p>
+    {% endif %}
+</body>
+</html>
