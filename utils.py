@@ -9,7 +9,7 @@ def load_questions():
 def generate_test(categories):
     questions = load_questions()
     filtered_questions = [q for q in questions if q['category'] in categories]
-    return random.sample(filtered_questions, 2)
+    return random.sample(filtered_questions, 5)
 
 def save_user_data(data):
     df = pd.DataFrame(data)
