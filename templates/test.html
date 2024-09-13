@@ -15,6 +15,9 @@
         <input type="text" name="answer" required>
         <button type="submit">Submit</button>
     </form>
+    {% if feedback %}
+        <p>feedback: {{ feedback }}</p>
+    {% endif %}
     {% if show_answer %}
         <p>Answer: {{ show_answer }}</p>
     {% endif %}

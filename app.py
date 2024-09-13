@@ -8,6 +8,7 @@ import pandas as pd
 import random
 from utils import generate_test, get_statistics, get_category_stats, save_user_data, load_user_data, delete_user_data
 import uuid
+import time
 
 app = Flask(__name__)
 app.secret_key = str(uuid.uuid4())  # Replace with a secure key
@@ -42,10 +43,15 @@ def test():
     questions = session['questions']
     current_question = session.get('current_question', 0)
     correct_answer = questions[current_question]['answer']
-
-    if request.method == 'POST':        
+    session['show_answer'] = 0
+    feedback = None
+    
+    if request.method == 'POST':
         user_answer = request.form.get('answer')
+        save_user_data(questions[current_question], bool(user_answer == correct_answer), time.time())
+        
         if user_answer == correct_answer:
+            session["attempts"] = 0
             session['current_question'] += 1
             if session['current_question'] >= len(questions):
                 return redirect(url_for('results'))
@@ -54,7 +60,9 @@ def test():
             session['attempts'] += 1
             if session['attempts'] >= 2:
                 session['show_answer'] = correct_answer
-            return render_template('test.html', question=questions[current_question], show_answer=session.get('show_answer'))
+            else:
+                feedback = {"general":'That\'s not quite right',"hint": questions[current_question]['hint']}
+            return render_template('test.html', question=questions[current_question], show_answer=session.get('show_answer'), feedback=feedback)
 
     return render_template('test.html', question=questions[current_question], show_answer=session.get('show_answer',0))
 
@@ -68,7 +76,7 @@ def results():
         'questions': questions,
         'attempts': session['attempts']
     }
-    save_user_data(user_data)
+    #save_user_data(user_data)
     return render_template('results.html')
 
 @app.route('/view_data')
