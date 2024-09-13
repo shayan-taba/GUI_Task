@@ -1,11 +1,16 @@
+import os
+import threading
+import webview  # Import PyWebview
+import sys
 from flask import Flask, render_template, request, redirect, url_for, jsonify, session
 import json
 import pandas as pd
 import random
 from utils import generate_test, get_statistics, get_category_stats, save_user_data, load_user_data, delete_user_data
+import uuid
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'  # Replace with a secure key
+app.secret_key = str(uuid.uuid4())  # Replace with a secure key
 
 @app.route('/')
 def index():
@@ -23,17 +28,23 @@ def start_test():
     session['attempts'] = 0
     return redirect(url_for('test'))
 
+def print_session():
+    session_data = {key: session[key] for key in session}
+    return json.dumps(session_data, indent=1)
+
 @app.route('/test', methods=['GET', 'POST'])
 def test():
+    print(print_session()) ### TESTING
+
     if 'questions' not in session:
         return redirect(url_for('index'))
     
     questions = session['questions']
     current_question = session.get('current_question', 0)
+    correct_answer = questions[current_question]['answer']
 
-    if request.method == 'POST':
+    if request.method == 'POST':        
         user_answer = request.form.get('answer')
-        correct_answer = questions[current_question]['answer']
         if user_answer == correct_answer:
             session['current_question'] += 1
             if session['current_question'] >= len(questions):
@@ -45,7 +56,7 @@ def test():
                 session['show_answer'] = correct_answer
             return render_template('test.html', question=questions[current_question], show_answer=session.get('show_answer'))
 
-    return render_template('test.html', question=questions[current_question], show_answer=session.get('show_answer'))
+    return render_template('test.html', question=questions[current_question], show_answer=session.get('show_answer',0))
 
 @app.route('/results')
 def results():
@@ -76,10 +87,22 @@ def generate_random_test():
     questions = generate_test(categories)
     return jsonify(questions)
 
+# Run Flask app in a thread
+def start_flask():
+    app.run(port=8000)
+    
 @app.route('/statistics')
 def statistics():
     stats = get_category_stats()
     return render_template('results.html', stats=stats)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # Check for 'production' mode in the command-line arguments
+    if len(sys.argv) > 1 and sys.argv[1] == 'production':
+        # Run in production mode with PyWebview
+        threading.Thread(target=start_flask).start()  # Start Flask in a separate thread
+        webview.create_window("Learning App for Kids", "http://127.0.0.1:8000/")  # Open the app in a PyWebview window
+        webview.start()
+    else:
+        # Run in development mode with Flask's built-in server
+        app.run(debug=True, port=8000)
