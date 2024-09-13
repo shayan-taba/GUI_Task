@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Welcome to the Numeracy Test</h1>
+    <form action="{{ url_for('start_test') }}" method="post">
+        <label>Select Categories:</label>
+        <select name="categories" multiple>
+            <option value="fractions">Fractions</option>
+            <option value="addition">Addition</option>
+            <option value="subtraction">Subtraction</option>
+        </select>
+        <button type="submit">Start Test</button>
+    </form>
+    <a href="{{ url_for('view_data') }}">View User Data</a>
+    <form action="{{ url_for('delete_data') }}" method="post">
+        <button type="submit">Delete All User Data</button>
+    </form>
+    <a href="{{ url_for('statistics') }}">View Statistics</a>
+</body>
+</html>

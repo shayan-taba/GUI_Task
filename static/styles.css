@@ -1,0 +1,98 @@
+/* styles.css */
+/*body {
+  font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+  background-color: #e0f7fa;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.container {
+  max-width: 1200px;
+  width: 1000px;
+  margin: 20px auto;
+  padding: 30px;
+  border-radius: 15px;
+  background-color: #ffffff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+h1, h3 {
+  color: #ff5722;
+  text-shadow: 2px 2px #ffccbc;
+}
+
+button, input[type="submit"], input[type="button"] {
+  font-size: 1.2em;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover, input[type="submit"]:hover, input[type="button"]:hover {
+  background-color: #388E3C;
+  transform: scale(1.05);
+}
+
+input[type="text"] {
+  font-size: 1.2em;
+  padding: 10px;
+  border-radius: 5px;
+  width: 80%;
+  border: 2px solid #ff9800;
+  margin-top: 10px;
+}
+
+.feedback {
+  font-size: 1.2em;
+  color: green;
+  margin: 20px 0;
+}
+
+.hint {
+  font-size: 1.1em;
+  color: #ff6347;
+  margin-top: 10px;
+}
+
+.category-stats {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+}
+
+.category-stats div {
+  width: 100px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #ffd54f;
+  color: #fff;
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 1.1em;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.hidden {
+  display: none;
+}
+
+.success-animation {
+  animation: bounce 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes bounce {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-10px); }
+}*/
