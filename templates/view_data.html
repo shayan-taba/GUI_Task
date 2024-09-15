@@ -21,7 +21,20 @@
         <form action="{{ url_for('delete_data') }}" method="post">
             <button type="submit">Reset All User Data</button>
         </form>
+        <!-- Upload Form -->
+        <div class="button-container">
+            <h2>Import CSV File</h2>
+            <form action="{{ url_for('import_csv') }}" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" accept=".csv" required>
+                <input type="submit" value="Upload CSV">
+            </form>
+        </div>
 
+        <!-- Download Link -->
+        <div class="button-container">
+            <h2>Export CSV File</h2>
+            <a href="{{ url_for('export_csv') }}" class="button">Download CSV</a>
+        </div>
     </div>
 </body>
 

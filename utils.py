@@ -3,6 +3,8 @@ import pandas as pd
 import random
 import os
 
+headers = ['category', 'correct', 'timestamp']
+
 def load_questions():
     with open('./questions.json') as f:
         return json.load(f)
@@ -24,7 +26,6 @@ def load_user_data():
 def delete_user_data():
     open('user_data/user_data.csv', 'w').close()
     file_path = 'user_data/user_data.csv'
-    headers = ['category', 'correct', 'timestamp']
 
     # Check if file exists and is not empty
     if not os.path.exists(file_path) or os.path.getsize(file_path) == 0:
@@ -52,7 +53,6 @@ def get_category_stats():
 
 def save_user_data(question, correct, timestamp):
     file_path = 'user_data/user_data.csv'
-    headers = ['category', 'correct', 'timestamp']
 
     # Check if file exists and is not empty
     if not os.path.exists(file_path) or os.path.getsize(file_path) == 0:

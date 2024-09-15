@@ -2,15 +2,17 @@ import os
 import threading
 import webview  # Import PyWebview
 import sys
-from flask import Flask, render_template, request, redirect, url_for, jsonify, session
+from flask import Flask, render_template, request, redirect, url_for, jsonify, session, send_file
 import json
 import pandas as pd
 import random
-from utils import generate_test, get_statistics, get_category_stats, save_user_data, load_user_data, delete_user_data
+from utils import generate_test, get_statistics, get_category_stats, save_user_data, load_user_data, delete_user_data, headers
 from stats_util import create_category_performance_chart, create_progress_line_chart, create_correct_pie_chart
 import uuid
+from werkzeug.utils import secure_filename
 import time
 
+data_file = 'user_data/user_data.csv'
 app = Flask(__name__)
 app.secret_key = str(uuid.uuid4())  # Replace with a secure key
 
@@ -97,10 +99,6 @@ def generate_random_test():
     categories = request.args.getlist('categories')
     questions = generate_test(categories)
     return jsonify(questions)
-
-# Run Flask app in a thread
-def start_flask():
-    app.run(port=8000)
     
 @app.route('/statistics')
 def statistics():
@@ -129,7 +127,54 @@ def statistics():
     return render_template('results.html', stats=stats)
     '''
 
+app.config['UPLOAD_FOLDER'] = 'uploads/'
+app.config['ALLOWED_EXTENSIONS'] = {'csv'}
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
+
+@app.route('/import_csv', methods=['POST'])
+def import_csv():
+    if 'file' not in request.files:
+        return redirect(request.url)
+    file = request.files['file']
+    if file.filename == '':
+        return redirect(request.url)
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(filepath)
+        
+        # Read CSV file into DataFrame
+        df = pd.read_csv(filepath)
+        
+        # Clean DataFrame: drop empty rows and columns
+        df.dropna(how='all', inplace=True)  # Drop rows where all elements are NaN
+        df.dropna(axis=1, how='all', inplace=True)  # Drop columns where all elements are NaN
+        
+        # Validate DataFrame columns and data
+        if 'category' in df.columns and 'correct' in df.columns and 'timestamp' in df.columns:
+            df.to_csv(data_file, mode='w', header=headers, index=False)
+        else:
+            return "CSV file format is incorrect. Please ensure it has 'category', 'correct', and 'timestamp' columns."
+        
+        return redirect(url_for('index'))
+
+@app.route('/export_csv')
+def export_csv():
+    if os.path.exists(data_file):
+        return send_file(data_file, as_attachment=True)
+    else:
+        return "No data available to export"
+
+# Run Flask app in a thread
+def start_flask():
+    app.run(port=8000)
+    
 if __name__ == '__main__':
+    if not os.path.exists(app.config['UPLOAD_FOLDER']):
+        os.makedirs(app.config['UPLOAD_FOLDER'])
     # Check for 'production' mode in the command-line arguments
     if len(sys.argv) > 1 and sys.argv[1] == 'production':
         # Run in production mode with PyWebview
@@ -139,3 +184,4 @@ if __name__ == '__main__':
     else:
         # Run in development mode with Flask's built-in server
         app.run(debug=True, port=8000)
+
