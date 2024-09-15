@@ -46,6 +46,10 @@ def test():
     questions = session['questions']
     current_question = session.get('current_question', 0)
     correct_answer = questions[current_question]['answer']
+    try:
+        correct_answer_2 = questions[current_question]['answer_second']
+    except:
+        correct_answer_2 = correct_answer
     session['show_answer'] = 0
     feedback = None
     
@@ -53,7 +57,7 @@ def test():
         user_answer = request.form.get('answer')
         save_user_data(questions[current_question], bool(user_answer == correct_answer), time.time())
         
-        if user_answer == correct_answer:
+        if user_answer == correct_answer or user_answer == correct_answer_2:
             session["attempts"] = 0
             session['current_question'] += 1
             if session['current_question'] >= len(questions):
