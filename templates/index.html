@@ -4,16 +4,23 @@
     <meta charset="UTF-8">
     <title>Home</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Select all checkboxes by default
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = true;
+            });
+        });
+    </script>
 </head>
 <body>
     <h1>Welcome to the Numeracy Test</h1>
     <form action="{{ url_for('start_test') }}" method="post">
-        <label>Select Categories:</label>
-        <select name="categories" multiple>
-            <option value="fractions">Fractions</option>
-            <option value="addition">Addition</option>
-            <option value="subtraction">Subtraction</option>
-        </select>
+        <label>Select Categories:</label><br>
+        <label><input type="checkbox" name="categories" value="fractions"> Fractions</label><br>
+        <label><input type="checkbox" name="categories" value="addition"> Addition</label><br>
+        <label><input type="checkbox" name="categories" value="subtraction"> Subtraction</label><br>
         <button type="submit">Start Test</button>
     </form>
     <a href="{{ url_for('statistics') }}">View Statistics</a><br>
