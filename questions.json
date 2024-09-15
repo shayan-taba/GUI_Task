@@ -1,182 +1,190 @@
 [
   {
-    "question": "What is 1/2 + 1/4?",
-    "answer": "3/4",
+    "question": "What is \\( \\frac{1}{2} + \\frac{1}{4} \\)?",
+    "answer": "\\( \\frac{3}{4} \\)",
+    "answer_second": "3/4",
     "category": "fractions",
-    "hint": "Find a common denominator (4) and add the numerators"
+    "hint": "Find a common denominator (4) and add the numerators."
   },
   {
-    "question": "What is 3/4 - 1/4?",
-    "answer": "1/2",
+    "question": "What is \\( \\frac{3}{4} - \\frac{1}{4} \\)?",
+    "answer": "\\( \\frac{1}{2} \\)",
+    "answer_second": "1/2",
     "category": "fractions",
-    "hint": "Subtract the numerators since the denominators are the same"
+    "hint": "Subtract the numerators since the denominators are the same."
   },
   {
-    "question": "What is 5/6 + 1/6?",
+    "question": "What is \\( \\frac{5}{6} + \\frac{1}{6} \\)?",
     "answer": "1",
     "category": "fractions",
-    "hint": "Add the numerators since the denominators are the same"
+    "hint": "Add the numerators since the denominators are the same."
   },
   {
-    "question": "What is 2/3 - 1/3?",
-    "answer": "1/3",
+    "question": "What is \\( \\frac{2}{3} - \\frac{1}{3} \\)?",
+    "answer": "\\( \\frac{1}{3} \\)",
+    "answer_second": "1/3",
     "category": "fractions",
-    "hint": "Subtract the numerators since the denominators are the same"
+    "hint": "Subtract the numerators since the denominators are the same."
   },
   {
-    "question": "What is 1/3 + 1/3?",
-    "answer": "2/3",
+    "question": "What is \\( \\frac{1}{3} + \\frac{1}{3} \\)?",
+    "answer": "\\( \\frac{2}{3} \\)",
+    "answer_second": "2/3",
     "category": "fractions",
-    "hint": "Add the numerators and keep the same denominator"
+    "hint": "Add the numerators and keep the same denominator."
   },
   {
-    "question": "What is 7/8 - 1/8?",
-    "answer": "3/4",
+    "question": "What is \\( \\frac{7}{8} - \\frac{1}{8} \\)?",
+    "answer": "\\( \\frac{3}{4} \\)",
+    "answer_second": "3/4",
     "category": "fractions",
-    "hint": "Subtract the numerators and simplify if possible"
+    "hint": "Subtract the numerators and simplify if possible."
   },
   {
-    "question": "What is 1/2 + 1/2?",
+    "question": "What is \\( \\frac{1}{2} + \\frac{1}{2} \\)?",
     "answer": "1",
     "category": "fractions",
-    "hint": "Add the numerators and simplify the result"
+    "hint": "Add the numerators and simplify the result."
   },
   {
-    "question": "What is 5/8 - 1/8?",
-    "answer": "1/2",
+    "question": "What is \\( \\frac{5}{8} - \\frac{1}{8} \\)?",
+    "answer": "\\( \\frac{1}{2} \\)",
+    "answer_second": "1/2",
     "category": "fractions",
-    "hint": "Subtract the numerators and simplify the result"
+    "hint": "Subtract the numerators and simplify the result."
   },
   {
-    "question": "What is 3/5 + 1/5?",
-    "answer": "4/5",
+    "question": "What is \\( \\frac{3}{5} + \\frac{1}{5} \\)?",
+    "answer": "\\( \\frac{4}{5} \\)",
+    "answer_second": "4/5",
     "category": "fractions",
-    "hint": "Add the numerators and keep the same denominator"
+    "hint": "Add the numerators and keep the same denominator."
   },
   {
-    "question": "What is 4/6 - 1/6?",
-    "answer": "1/2",
+    "question": "What is \\( \\frac{4}{6} - \\frac{1}{6} \\)?",
+    "answer": "\\( \\frac{1}{2} \\)",
+    "answer_second": "1/2",
     "category": "fractions",
-    "hint": "Subtract the numerators and simplify the result"
+    "hint": "Subtract the numerators and simplify the result."
   },
   {
     "question": "What is 7 + 5?",
     "answer": "12",
     "category": "addition",
-    "hint": "Count up 5 from 7"
+    "hint": "Count up 5 from 7."
   },
   {
     "question": "What is 9 + 8?",
     "answer": "17",
     "category": "addition",
-    "hint": "Think of it as 10 + 7"
+    "hint": "Think of it as 10 + 7."
   },
   {
     "question": "What is 12 + 14?",
     "answer": "26",
     "category": "addition",
-    "hint": "Break it down to 12 + 10 + 4"
+    "hint": "Break it down to 12 + 10 + 4."
   },
   {
     "question": "What is 15 + 6?",
     "answer": "21",
     "category": "addition",
-    "hint": "Think of it as 15 + 5 + 1"
+    "hint": "Think of it as 15 + 5 + 1."
   },
   {
     "question": "What is 18 + 7?",
     "answer": "25",
     "category": "addition",
-    "hint": "Add 2 to get to 20, then add 5 more"
+    "hint": "Add 2 to get to 20, then add 5 more."
   },
   {
     "question": "What is 23 + 9?",
     "answer": "32",
     "category": "addition",
-    "hint": "Add 7 to get to 30, then add 2 more"
+    "hint": "Add 7 to get to 30, then add 2 more."
   },
   {
     "question": "What is 16 + 13?",
     "answer": "29",
     "category": "addition",
-    "hint": "Break it down to 16 + 10 + 3"
+    "hint": "Break it down to 16 + 10 + 3."
   },
   {
     "question": "What is 27 + 8?",
     "answer": "35",
     "category": "addition",
-    "hint": "Add 3 to get to 30, then add 5 more"
+    "hint": "Add 3 to get to 30, then add 5 more."
   },
   {
     "question": "What is 31 + 12?",
     "answer": "43",
     "category": "addition",
-    "hint": "Break it down to 31 + 10 + 2"
+    "hint": "Break it down to 31 + 10 + 2."
   },
   {
     "question": "What is 24 + 17?",
     "answer": "41",
     "category": "addition",
-    "hint": "Add 6 to get to 30, then add 11 more"
+    "hint": "Add 6 to get to 30, then add 11 more."
   },
   {
     "question": "What is 15 - 9?",
     "answer": "6",
     "category": "subtraction",
-    "hint": "Count down from 15 by 9"
+    "hint": "Count down from 15 by 9."
   },
   {
     "question": "What is 20 - 13?",
     "answer": "7",
     "category": "subtraction",
-    "hint": "Subtract 10 first, then subtract 3 more"
+    "hint": "Subtract 10 first, then subtract 3 more."
   },
   {
     "question": "What is 18 - 7?",
     "answer": "11",
     "category": "subtraction",
-    "hint": "Think of it as 18 - 8 + 1"
+    "hint": "Think of it as 18 - 8 + 1."
   },
   {
     "question": "What is 25 - 16?",
     "answer": "9",
     "category": "subtraction",
-    "hint": "Subtract 15, then subtract 1 more"
+    "hint": "Subtract 15, then subtract 1 more."
   },
   {
     "question": "What is 30 - 12?",
     "answer": "18",
     "category": "subtraction",
-    "hint": "Subtract 10 first, then subtract 2 more"
+    "hint": "Subtract 10 first, then subtract 2 more."
   },
   {
     "question": "What is 22 - 9?",
     "answer": "13",
     "category": "subtraction",
-    "hint": "Subtract 10, then add 1 back"
+    "hint": "Subtract 10, then add 1 back."
   },
   {
     "question": "What is 28 - 15?",
     "answer": "13",
     "category": "subtraction",
-    "hint": "Subtract 10 first, then subtract 5 more"
+    "hint": "Subtract 10 first, then subtract 5 more."
   },
   {
     "question": "What is 33 - 17?",
     "answer": "16",
     "category": "subtraction",
-    "hint": "Subtract 20, then add 3 back"
+    "hint": "Subtract 20, then add 3 back."
   },
   {
     "question": "What is 40 - 23?",
     "answer": "17",
     "category": "subtraction",
-    "hint": "Subtract 20 first, then subtract 3 more"
+    "hint": "Subtract 20 first, then subtract 3 more."
   },
   {
     "question": "What is 36 - 19?",
     "answer": "17",
     "category": "subtraction",
-    "hint": "Subtract 20, then add 1 back"
+    "hint": "Subtract 20, then add 1 back."
   }
 ]

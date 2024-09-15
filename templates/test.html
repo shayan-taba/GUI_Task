@@ -1,31 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <title>Test</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <!-- Include MathJax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </head>
-
 <body>
     <div class="container">
         <h1>Test</h1>
         <form action="{{ url_for('index') }}">
-            <button type="submit"><i class="bx bxs-home"></i></button>
+            <button type="submit"><i class="bx bxs-home"></i> Home</button>
         </form>
-        <script></script>
         <form action="{{ url_for('test') }}" method="post">
-            <p>{{ question['question'] }}</p>
+            <!-- Add the class 'math' to ensure MathJax processes this element -->
+            <p class="math">{{ question['question']|safe }}</p>
             <input type="text" name="answer" required />
             <button type="submit">Submit</button>
         </form>
         {% if feedback %}
-        <p>feedback: {{ feedback }}</p>
-        {% endif %} {% if show_answer %}
-        <p>Answer: {{ show_answer }}</p>
+        <p>Feedback: {{ feedback }}</p>
+        {% endif %}
+        {% if show_answer %}
+        <p class="math">Answer: {{ show_answer|safe }}</p>
         {% endif %}
     </div>
+    <script>
+        // Re-render MathJax after the page loads
+        document.addEventListener("DOMContentLoaded", function() {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub, "question"]);
+            if (document.querySelector(".math")) {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub, "answer"]);
+            }
+        });
+    </script>
 </body>
-
 </html>
