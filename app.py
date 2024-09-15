@@ -7,6 +7,7 @@ import json
 import pandas as pd
 import random
 from utils import generate_test, get_statistics, get_category_stats, save_user_data, load_user_data, delete_user_data
+from stats_util import create_category_performance_chart, create_progress_line_chart, create_correct_pie_chart
 import uuid
 import time
 
@@ -82,7 +83,9 @@ def results():
 @app.route('/view_data')
 def view_data():
     data = load_user_data()
-    return render_template('view_data.html', data=data)
+    data['timestamp'] = pd.to_datetime(data['timestamp'], unit='s').apply(lambda x: x.strftime('%Y-%m-%d %H:%M:%S'))
+    table_html = data.to_html(classes='table table-striped', index=False)
+    return render_template('view_data.html', data=table_html)
 
 @app.route('/delete_data', methods=['POST'])
 def delete_data():
@@ -101,8 +104,30 @@ def start_flask():
     
 @app.route('/statistics')
 def statistics():
+    #if 'questions' not in session:
+        #return redirect(url_for('index'))
+
+    df = load_user_data()
+
+    # Create charts
+    category_performance_chart = create_category_performance_chart(df)
+    correct_pie_chart = create_correct_pie_chart(df)
+    progress_line_chart = create_progress_line_chart(df)
+    
+    print(category_performance_chart)
+    print('mashallah')
+
+    # Render the results page with the charts
+    return render_template('statistics.html',
+                           category_chart=category_performance_chart,
+                           pie_chart=correct_pie_chart,
+                           line_chart=progress_line_chart)
+    #save_user_data(user_data)
+    #return render_template('results.html')
+    '''
     stats = get_category_stats()
     return render_template('results.html', stats=stats)
+    '''
 
 if __name__ == '__main__':
     # Check for 'production' mode in the command-line arguments
