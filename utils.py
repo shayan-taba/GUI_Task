@@ -23,6 +23,22 @@ def load_user_data():
 
 def delete_user_data():
     open('user_data/user_data.csv', 'w').close()
+    file_path = 'user_data/user_data.csv'
+    headers = ['category', 'correct', 'timestamp']
+
+    # Check if file exists and is not empty
+    if not os.path.exists(file_path) or os.path.getsize(file_path) == 0:
+        # Create a DataFrame with headers if the file does not exist or is empty
+        df = pd.DataFrame(columns=headers)
+    
+        new_data_df = pd.DataFrame(columns=headers)
+    
+        # Append new data
+        df = pd.concat([df, new_data_df], ignore_index=True)
+        
+        # Save DataFrame to CSV
+        df.to_csv(file_path, index=False)
+
 
 def get_statistics():
     df = load_user_data()
@@ -36,7 +52,7 @@ def get_category_stats():
 
 def save_user_data(question, correct, timestamp):
     file_path = 'user_data/user_data.csv'
-    headers = ['category', 'correct', 'timestamp']  # Define your headers here
+    headers = ['category', 'correct', 'timestamp']
 
     # Check if file exists and is not empty
     if not os.path.exists(file_path) or os.path.getsize(file_path) == 0:
