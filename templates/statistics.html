@@ -12,6 +12,7 @@
         <form action="{{ url_for('index') }}">
             <button type="submit"><i class="bx bxs-home"></i></button>
         </form>
+        {% if data_available %}
         <h2>Performance by Category</h2>
         <img src="data:image/png;base64,{{ category_chart }}" alt="Category Performance Chart">
         
@@ -20,6 +21,7 @@
 
         <h2>Progress Over Time</h2>
         <img src="data:image/png;base64,{{ line_chart }}" alt="Progress Over Time Chart">
+        {% endif %}
     </div>
 </body>
 </html>
