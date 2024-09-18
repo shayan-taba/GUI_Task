@@ -90,9 +90,12 @@ def results():
 @app.route('/view_data')
 def view_data():
     data = load_user_data()
+    data_available = True
+    if len(data) == 0:
+        data_available = False
     data['timestamp'] = pd.to_datetime(data['timestamp'], unit='s').apply(lambda x: x.strftime('%Y-%m-%d %H:%M:%S'))
     table_html = data.to_html(classes='table table-striped', index=False)
-    return render_template('view_data.html', data=table_html)
+    return render_template('view_data.html', data=table_html, data_available=data_available)
 
 @app.route('/delete_data', methods=['POST'])
 def delete_data():

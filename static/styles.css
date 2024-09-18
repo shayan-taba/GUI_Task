@@ -1,5 +1,6 @@
 /* styles.css */
-/*body {
+/**/
+body {
   font-family: 'Comic Sans MS', 'Comic Sans', cursive;
   background-color: #e0f7fa;
   margin: 0;
@@ -95,4 +96,5 @@ a:hover {
 @keyframes bounce {
   0% { transform: translateY(0); }
   100% { transform: translateY(-10px); }
-}*/
+}
+/**/
