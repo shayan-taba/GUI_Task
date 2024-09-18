@@ -1,5 +1,5 @@
-./uploads
-./user_data
+./uploads/
+./user_data/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
