@@ -11,8 +11,9 @@ matplotlib.use('Agg')
 
 # Create a bar chart for the performance of each category
 def create_category_performance_chart(df):
+    palette = {True: 'blue', False: 'red'}
     plt.figure(figsize=(10, 6))
-    sns.countplot(x='category', hue='correct', data=df)
+    sns.countplot(x='category', hue='correct', data=df, palette=palette)
     plt.title('Correct vs Incorrect Answers by Category')
     plt.xlabel('Category')
     plt.ylabel('Count')

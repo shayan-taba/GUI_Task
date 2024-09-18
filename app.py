@@ -26,6 +26,7 @@ def index():
 @app.route('/start_test', methods=['POST'])
 def start_test():
     categories = request.form.getlist('categories')
+    print(categories)
     questions = generate_test(categories)
     session['questions'] = questions
     session['current_question'] = 0
