@@ -112,25 +112,28 @@ def statistics():
 
     df = load_user_data()
 
-    # Create charts
-    category_performance_chart = create_category_performance_chart(df)
-    correct_pie_chart = create_correct_pie_chart(df)
-    progress_line_chart = create_progress_line_chart(df)
-    
-    print(category_performance_chart)
-    print('mashallah')
+    if len(df) > 0:
+        # Create charts
+        category_performance_chart = create_category_performance_chart(df)
+        correct_pie_chart = create_correct_pie_chart(df)
+        progress_line_chart = create_progress_line_chart(df)
+        
+        print(category_performance_chart)
+        print('mashallah')
 
-    # Render the results page with the charts
-    return render_template('statistics.html',
-                           category_chart=category_performance_chart,
-                           pie_chart=correct_pie_chart,
-                           line_chart=progress_line_chart)
-    #save_user_data(user_data)
-    #return render_template('results.html')
-    '''
-    stats = get_category_stats()
-    return render_template('results.html', stats=stats)
-    '''
+        # Render the results page with the charts
+        return render_template('statistics.html',
+                            category_chart=category_performance_chart,
+                            pie_chart=correct_pie_chart,
+                            line_chart=progress_line_chart,
+                            data_available=True)
+        #save_user_data(user_data)
+        #return render_template('results.html')
+        '''
+        stats = get_category_stats()
+        return render_template('results.html', stats=stats)
+        '''
+    return render_template('statistics.html', data_available=False)        
 
 app.config['UPLOAD_FOLDER'] = 'uploads/'
 app.config['ALLOWED_EXTENSIONS'] = {'csv'}
