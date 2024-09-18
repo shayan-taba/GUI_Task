@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Results</title>
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
 </head>
 <body>
     <div class="container">
@@ -21,7 +22,10 @@
 
         <h2>Progress Over Time</h2>
         <img src="data:image/png;base64,{{ line_chart }}" alt="Progress Over Time Chart">
+        {% else %}
+            <h2 class="error">No data have been saved. To view statistics, please attempt questions.</h2>
         {% endif %}
+
     </div>
 </body>
 </html>
