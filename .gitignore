@@ -1,6 +1,7 @@
 uploads/
 flask_session
-user_data/
+user_data/username.txt
+user_data/user_data.csv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

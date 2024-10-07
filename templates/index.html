@@ -22,21 +22,22 @@
 <body>
     <div class="background">
         <div class="container">
-            <h1>Hello, <input autofocus type="text" placeholder="username" id="username"
+            <h1>Welcome,<span>&nbsp;</span><input autofocus type="text" placeholder="username" id="username"
                     value="{{ username if username.strip() != '' else '' }}" autocomplete="off">
                 <div id="hiddenSizing"></div>
             </h1>
-            <form action="{{ url_for('start_test') }}" method="post">
-                <label>Select Categories:</label><br>
-                <label><input type="checkbox" name="categories" value="fractions"> Fractions</label><br>
-                <label><input type="checkbox" name="categories" value="addition"> Addition</label><br>
-                <label><input type="checkbox" name="categories" value="subtraction"> Subtraction</label><br>
-                <label><input type="checkbox" name="categories" value="patterns"> Patterns</label><br>
-                <label><input type="checkbox" name="categories" value="multiplication"> Multiplication</label><br>
+            <form class="testGenerate" action="{{ url_for('start_test') }}" method="post">
+                <label>Select Categories:</label>
+                <label><input type="checkbox" name="categories" value="fractions"> Fractions</label>
+                <label><input type="checkbox" name="categories" value="addition"> Addition</label>
+                <label><input type="checkbox" name="categories" value="subtraction"> Subtraction</label>
+                <label><input type="checkbox" name="categories" value="patterns"> Patterns</label>
+                <label><input type="checkbox" name="categories" value="multiplication"> Multiplication</label>
                 <button type="submit">Start Test</button>
             </form>
-            <a href="{{ url_for('statistics') }}">View Statistics</a><br>
-            <a href="{{ url_for('view_data') }}">View User Data</a>
+            <div><a href="{{ url_for('statistics') }}">View Statistics</a><br>
+                <a href="{{ url_for('view_data') }}">View User Data</a>
+            </div>
         </div>
     </div>
     <script>
@@ -44,14 +45,14 @@
             const inputField = document.getElementById('username');
 
             document.getElementById("hiddenSizing").innerText = inputField.value.trim() != "" ? inputField.value : "Username";
-            document.getElementById("username").style.width = `${document.querySelector("#hiddenSizing").offsetWidth}px`; 
+            document.getElementById("username").style.width = `${document.querySelector("#hiddenSizing").offsetWidth}px`;
 
 
             inputField.addEventListener('input', function () {
                 const username = inputField.value;
 
                 document.getElementById("hiddenSizing").innerText = inputField.value.trim() != "" ? inputField.value : "Username";
-                document.getElementById("username").style.width = `${document.querySelector("#hiddenSizing").offsetWidth}px`; 
+                document.getElementById("username").style.width = `${document.querySelector("#hiddenSizing").offsetWidth}px`;
 
                 fetch('/save_username', {
                     method: 'POST',
