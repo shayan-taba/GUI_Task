@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
@@ -13,19 +14,28 @@
             });
         });
     </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <h1>Welcome to the Numeracy Test</h1>
-    <form action="{{ url_for('start_test') }}" method="post">
-        <label>Select Categories:</label><br>
-        <label><input type="checkbox" name="categories" value="fractions"> Fractions</label><br>
-        <label><input type="checkbox" name="categories" value="addition"> Addition</label><br>
-        <label><input type="checkbox" name="categories" value="subtraction"> Subtraction</label><br>
-        <label><input type="checkbox" name="categories" value="patterns"> Patterns</label><br>
-        <label><input type="checkbox" name="categories" value="multiplication"> Multiplication</label><br>
-        <button type="submit">Start Test</button>
-    </form>
-    <a href="{{ url_for('statistics') }}">View Statistics</a><br>
-    <a href="{{ url_for('view_data') }}">View User Data</a>
+    <div class="background">
+    <div class="container">
+        <h1>Welcome , {{ name if name else 'Guest' }}!</h1>
+        <form action="{{ url_for('start_test') }}" method="post">
+            <label>Select Categories:</label><br>
+            <label><input type="checkbox" name="categories" value="fractions"> Fractions</label><br>
+            <label><input type="checkbox" name="categories" value="addition"> Addition</label><br>
+            <label><input type="checkbox" name="categories" value="subtraction"> Subtraction</label><br>
+            <label><input type="checkbox" name="categories" value="patterns"> Patterns</label><br>
+            <label><input type="checkbox" name="categories" value="multiplication"> Multiplication</label><br>
+            <button type="submit">Start Test</button>
+        </form>
+        <a href="{{ url_for('statistics') }}">View Statistics</a><br>
+        <a href="{{ url_for('view_data') }}">View User Data</a>
+    </div>
+</div>
 </body>
+
 </html>
