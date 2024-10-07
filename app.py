@@ -8,8 +8,8 @@ from flask import Flask, render_template, request, redirect, url_for, jsonify, s
 import json
 import pandas as pd
 import random
-from utils import generate_test, get_statistics, get_category_stats, save_user_data, load_user_data, delete_user_data, headers
-from stats_util import create_category_performance_chart, create_progress_line_chart, create_correct_pie_chart
+from modules.utils import generate_test, get_statistics, get_category_stats, save_user_data, load_user_data, delete_user_data, headers
+from modules.stats_util import create_category_performance_chart, create_progress_line_chart, create_correct_pie_chart
 import uuid
 from werkzeug.utils import secure_filename
 import time
@@ -189,7 +189,7 @@ def read_username():
     if os.path.exists(username_file):
         with open(username_file, 'r') as file:
             return file.read().strip()
-    return 'Enter username'  # Default if not set
+    return ''  # Default if not set
 
 def save_username(username):
     """Save the username to the specified text file."""
@@ -206,17 +206,37 @@ def save_username_route():
 # Run Flask app in a thread
 def start_flask():
     app.run(port=8000)
-    
+
+def signal_handler(sig, frame):
+    """Gracefully shut down the Flask server."""
+    print('Shutting down Flask server...')
+    func = request.environ.get('werkzeug.server.shutdown')
+    if func is None:
+        raise RuntimeError('Not running with the Werkzeug Server')
+    func()
+
 if __name__ == '__main__':
     if not os.path.exists(app.config['UPLOAD_FOLDER']):
         os.makedirs(app.config['UPLOAD_FOLDER'])
+    
+    # Set up signal handler
+    signal.signal(signal.SIGINT, signal_handler)
+    
     # Check for 'production' mode in the command-line arguments
     if len(sys.argv) > 1 and sys.argv[1] == 'production':
-        # Run in production mode with PyWebview
-        threading.Thread(target=start_flask).start()  # Start Flask in a separate thread
-        webview.create_window("Learning App for Kids", "http://127.0.0.1:8000/", fullscreen=True)  # Open the app in a PyWebview window
-        webview.start()
+        flask_thread = threading.Thread(target=start_flask)
+        flask_thread.daemon = True  # Ensure Flask exits when the main thread exits
+        flask_thread.start()
+        
+        try:
+            webview.create_window("Learning App for Kids", "http://127.0.0.1:8000/", fullscreen=True)
+            webview.start()
+        except Exception as e:
+            print(f"Error occurred in webview: {e}")
+            os._exit(0)  # Ensure proper exit on failure
+        
+        print("Webview closed, shutting down Flask...")
+        os._exit(0)  # Forcefully close any remaining threads
     else:
         # Run in development mode with Flask's built-in server
         app.run(debug=True, port=8000)
-
