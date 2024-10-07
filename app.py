@@ -14,16 +14,19 @@ import uuid
 from werkzeug.utils import secure_filename
 import time
 
+username_file = 'user_data/username.txt'
 data_file = 'user_data/user_data.csv'
 app = Flask(__name__)
 app.secret_key = str(uuid.uuid4())  # Replace with a secure key
 
 @app.route('/')
 def index():
+    username = read_username()  # Read the username from the file
+    print(username,'\n\n\n')
     if 'user_data' in session:
         stats = get_statistics()
-        return render_template('index.html', stats=stats)
-    return render_template('index.html')
+        return render_template('index.html', stats=stats, username=username)
+    return render_template('index.html', username=username)
 
 @app.route('/start_test', methods=['POST'])
 def start_test():
@@ -180,6 +183,25 @@ def export_csv():
         return send_file(data_file, as_attachment=True)
     else:
         return "No data available to export"
+
+def read_username():
+    """Retrieve the username from the specified text file."""
+    if os.path.exists(username_file):
+        with open(username_file, 'r') as file:
+            return file.read().strip()
+    return 'Enter username'  # Default if not set
+
+def save_username(username):
+    """Save the username to the specified text file."""
+    with open(username_file, 'w') as file:
+        file.write(username)
+        
+@app.route('/save_username', methods=['POST'])
+def save_username_route():
+    data = request.get_json()
+    username = data.get('username', '')
+    save_username(username)
+    return jsonify({'message': 'Username saved successfully!'})
 
 # Run Flask app in a thread
 def start_flask():
