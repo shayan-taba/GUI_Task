@@ -1,7 +1,9 @@
 import os
 import threading
-import webview  # Import PyWebview
+import webview
 import sys
+import subprocess
+import signal
 from flask import Flask, render_template, request, redirect, url_for, jsonify, session, send_file
 import json
 import pandas as pd
@@ -190,7 +192,7 @@ if __name__ == '__main__':
     if len(sys.argv) > 1 and sys.argv[1] == 'production':
         # Run in production mode with PyWebview
         threading.Thread(target=start_flask).start()  # Start Flask in a separate thread
-        webview.create_window("Learning App for Kids", "http://127.0.0.1:8000/")  # Open the app in a PyWebview window
+        webview.create_window("Learning App for Kids", "http://127.0.0.1:8000/", fullscreen=True)  # Open the app in a PyWebview window
         webview.start()
     else:
         # Run in development mode with Flask's built-in server

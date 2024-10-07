@@ -287,6 +287,6 @@
     "question": "What number comes next in the sequence: 1, 4, 9, 16, __?",
     "answer": "25",
     "category": "patterns",
-    "hint": "These are squares of numbers: 1×1, 2×2, 3×3, etc."
+    "hint": "These are squares of numbers: 1x1, 2x2, 3x3, etc."
   }
 ]
