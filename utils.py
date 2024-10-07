@@ -25,8 +25,10 @@ def load_user_data():
     return pd.read_csv('user_data/user_data.csv')
 
 def delete_user_data():
-    open('user_data/user_data.csv', 'w').close()
     file_path = 'user_data/user_data.csv'
+    open(file_path, 'w').close() # Deletes CSV
+    
+    open('user_data/username.txt', 'w').close() # Deletes stored username
 
     # Check if file exists and is not empty
     if not os.path.exists(file_path) or os.path.getsize(file_path) == 0:
