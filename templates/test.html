@@ -28,16 +28,41 @@
             {% if feedback %}
             <p class="hint">
                 {% if question['category'] != "fractions" %}
-                  {{ feedback["general"] }}.
+                {{ feedback["general"] }}.
                 {% endif %}
-                {{ feedback["hint"] }}{% if question['category'] == "fractions" %} Remember to simplify any answers given as fractions.{% endif %}
-              </p>
-              
+                {{ feedback["hint"] }}{% if question['category'] == "fractions" %} Remember to simplify any answers
+                given as fractions.{% endif %}
+            </p>
+
             {% endif %}
             {% if show_answer %}
             <p class="math answer">Answer: {{ show_answer|safe }}</p>
             {% endif %}
         </div>
+        <div class="overlay" id="overlay"></div>
+        <div class="popup" id="popup">
+            <a href="{{ url_for('index') }}">
+                {% if score == number_of_questions %}
+                Amazing job! You got {{ score }} out of {{ number_of_questions }} right!
+                {% elif score >= number_of_questions * 0.8 %}
+                Great work! You got {{ score }} out of {{ number_of_questions }} right!
+                {% elif score >= number_of_questions * 0.5 %}
+                Good effort! You got {{ score }} out of {{ number_of_questions }} right!
+                {% else %}
+                Keep trying! You got {{ score }} out of {{ number_of_questions }} right!
+                {% endif %}
+            </a>
+            <a href="{{ url_for('index') }}" id="closePopup" class="close-btn"><i class='bx bxs-x-circle'></i></a>
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                if ("{{ finished }}") {
+                    event.preventDefault();
+                    document.getElementById("popup").style.display = "block";
+                    document.getElementById("overlay").style.display = "block";
+                }
+            })
+        </script>
         <script>
             // Re-render MathJax after the page loads
             document.addEventListener("DOMContentLoaded", function () {

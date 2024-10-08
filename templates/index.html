@@ -16,6 +16,7 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
 </head>
 
@@ -47,11 +48,10 @@
                 <div class="popup" id="popup">
                     <a href="{{ url_for('statistics') }}">View Statistics</a>
                     <a href="{{ url_for('view_data') }}">View User Data</a>
-                    <a href="#" id="closePopup" class="close-btn">Close</a>
+                    <a href="#" id="closePopup" class="close-btn"><i class='bx bxs-x-circle'></i></a>
                 </div>
 
                 <script>
-                    // Minimal JavaScript to toggle popup and overlay visibility
                     document.getElementById("openPopup").addEventListener("click", function (event) {
                         event.preventDefault();
                         document.getElementById("popup").style.display = "block";

@@ -35,6 +35,7 @@ def start_test():
     session['questions'] = questions
     session['current_question'] = 0
     session['attempts'] = 0
+    session['show_answer'] = 0
     session['score'] = 0
     return redirect(url_for('test'))
 
@@ -70,6 +71,7 @@ def test():
             session["attempts"] = 0
             session['current_question'] += 1
             if session['current_question'] >= len(questions): # all questions have been answered. test is finished. results page is rendered.
+                session['current_question'] -= 1
                 return redirect(url_for('results'))
             return redirect(url_for('test'))
         else:
@@ -90,14 +92,12 @@ def results():
     print(session["score"],"FICTION")
     if 'questions' not in session:
         return redirect(url_for('index'))
-
-    questions = session['questions']
-    user_data = {
-        'questions': questions,
-        'attempts': session['attempts']
-    }
+    
+    questions = session["questions"]
+    current_question = session["current_question"]
+    
     #save_user_data(user_data)
-    return render_template('results.html')
+    return render_template('test.html', question=questions[-1], show_answer=session.get('show_answer'), finished=True, score=session["score"], number_of_questions=len(questions))
 
 @app.route('/view_data')
 def view_data():
