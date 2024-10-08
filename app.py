@@ -66,8 +66,8 @@ def test():
         #save_user_data(questions[current_question], bool(user_answer == correct_answer), time.time())
 
         pattern = re.compile(r'^[0-9/]+$')
-        if not(pattern.match(user_answer)):
-            return render_template('test.html', question=questions[current_question], show_answer=session.get('show_answer'), feedback= {"validate":'Please only enter numbers and fractions'})
+        if not(pattern.match(user_answer)) or (user_answer.isdigit() and int(user_answer)>100):
+            return render_template('test.html', question=questions[current_question], show_answer=session.get('show_answer'), feedback= {"validate":'Please only enter integers from 0-100 or fractions'})
         
         if user_answer == correct_answer or user_answer == correct_answer_2:
             if session['attempts'] <= 1: # on the 2nd attempt, the answer was wrong again. answer is shown. result recorded as false.
