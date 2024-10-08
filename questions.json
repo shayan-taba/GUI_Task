@@ -234,7 +234,7 @@
   },
   {
     "question": "What is \\( \\frac{7}{8} - \\frac{3}{8} \\)?",
-    "answer": "\\( \\frac{4}{8} \\)",
+    "answer": "\\( \\frac{1}{2} \\)",
     "answer_second": "1/2",
     "category": "fractions",
     "hint": "Subtract the numerators since the denominators are the same."
@@ -272,7 +272,7 @@
   },
   {
     "question": "What fraction of a pizza is left if you eat \\( \\frac{2}{8} \\) from a pizza with 8 slices?",
-    "answer": "6/8",
+    "answer": "3/4",
     "answer_second": "3/4",
     "category": "fractions",
     "hint": "Subtract 2 from 8 to find how many slices are left."
@@ -303,8 +303,8 @@
   },
   {
     "question": "What fraction is half of \\( \\frac{4}{8} \\)?",
-    "answer": "2/8",
-    "answer_second": "1/4",
+    "answer": "1/4",
+    "answer_second": "2/8",
     "category": "fractions",
     "hint": "Divide the numerator and denominator by 2."
   },
@@ -558,8 +558,8 @@
   },
   {
     "question": "What fraction of a pizza is left if you eat \\( \\frac{2}{6} \\)?",
-    "answer": "4/6",
-    "answer_second": "2/3",
+    "answer": "2/3",
+    "answer_second": "4/6",
     "category": "fractions",
     "hint": "Subtract 2 from 6."
   },
@@ -621,7 +621,7 @@
   },
   {
     "question": "What is \\( \\frac{6}{10} + \\frac{2}{10} \\)?",
-    "answer": "\\( \\frac{8}{10} \\)",
+    "answer": "\\( \\frac{4}{5} \\)",
     "answer_second": "4/5",
     "category": "fractions",
     "hint": "Add the numerators and simplify the result."
@@ -663,7 +663,7 @@
   {
     "question": "What is \\( \\frac{3}{4} + \\frac{1}{2} \\)?",
     "answer": "\\( \\frac{5}{4} \\)",
-    "answer_second": "1 1/4",
+    "answer_second": "5/4",
     "category": "fractions",
     "hint": "Convert \\( \\frac{1}{2} \\) to \\( \\frac{2}{4} \\) to add."
   },
@@ -696,7 +696,7 @@
   },
   {
     "question": "What is \\( \\frac{6}{12} - \\frac{4}{12} \\)?",
-    "answer": "\\( \\frac{1}{3} \\)",
+    "answer": "\\( \\frac{1}{6} \\)",
     "answer_second": "1/6",
     "category": "fractions",
     "hint": "Subtract the numerators since the denominators are the same."
