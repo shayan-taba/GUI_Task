@@ -259,12 +259,6 @@
     "hint": "Add the tens first, then the ones."
   },
   {
-    "question": "Which is the smallest number: 34, 29, 45, or 31?",
-    "answer": "29",
-    "category": "number comparison",
-    "hint": "Look at the tens place first to compare."
-  },
-  {
     "question": "What is \\( 12 \\div 4 \\)?",
     "answer": "3",
     "category": "division",
@@ -284,9 +278,433 @@
     "hint": "Subtract 2 from 8 to find how many slices are left."
   },
   {
-    "question": "What number comes next in the sequence: 1, 4, 9, 16, __?",
+    "question": "What is 15 + 26?",
+    "answer": "41",
+    "category": "addition",
+    "hint": "Add the tens first, then the ones."
+  },
+  {
+    "question": "What is 64 - 23?",
+    "answer": "41",
+    "category": "subtraction",
+    "hint": "Subtract the tens first, then the ones."
+  },
+  {
+    "question": "What is 8 × 3?",
+    "answer": "24",
+    "category": "multiplication",
+    "hint": "Think of 8 groups of 3."
+  },
+  {
+    "question": "What is 45 ÷ 5?",
+    "answer": "9",
+    "category": "division",
+    "hint": "How many times does 5 fit into 45?"
+  },
+  {
+    "question": "What fraction is half of \\( \\frac{4}{8} \\)?",
+    "answer": "2/8",
+    "answer_second": "1/4",
+    "category": "fractions",
+    "hint": "Divide the numerator and denominator by 2."
+  },
+  {
+    "question": "What comes next in the pattern: 2, 4, 6, 8, __?",
+    "answer": "10",
+    "category": "patterns",
+    "hint": "These numbers are going up by 2."
+  },
+  {
+    "question": "What is 9 + 8?",
+    "answer": "17",
+    "category": "addition",
+    "hint": "Add the ones place first."
+  },
+  {
+    "question": "What is 30 - 12?",
+    "answer": "18",
+    "category": "subtraction",
+    "hint": "Subtract the tens first."
+  },
+  {
+    "question": "What is 7 × 4?",
+    "answer": "28",
+    "category": "multiplication",
+    "hint": "Think of 7 groups of 4."
+  },
+  {
+    "question": "What is 36 ÷ 6?",
+    "answer": "6",
+    "category": "division",
+    "hint": "How many times does 6 fit into 36?"
+  },
+  {
+    "question": "What is 3/4 of a pizza if you eat \\( \\frac{1}{4} \\)?",
+    "answer": "3/4",
+    "category": "fractions",
+    "hint": "Think of how many quarters are left."
+  },
+  {
+    "question": "What is the next number in the sequence: 10, 15, 20, __?",
     "answer": "25",
     "category": "patterns",
-    "hint": "These are squares of numbers: 1x1, 2x2, 3x3, etc."
+    "hint": "Add 5 to the previous number."
+  },
+  {
+    "question": "What is 57 + 12?",
+    "answer": "69",
+    "category": "addition",
+    "hint": "Add the tens, then the ones."
+  },
+  {
+    "question": "What is 25 - 9?",
+    "answer": "16",
+    "category": "subtraction",
+    "hint": "Subtract the ones first."
+  },
+  {
+    "question": "What is 9 × 5?",
+    "answer": "45",
+    "category": "multiplication",
+    "hint": "Think of 9 groups of 5."
+  },
+  {
+    "question": "What is 54 ÷ 9?",
+    "answer": "6",
+    "category": "division",
+    "hint": "How many times does 9 fit into 54?"
+  },
+  {
+    "question": "If you have \\( \\frac{5}{8} \\) of a pizza, how much is left to make a whole pizza?",
+    "answer": "3/8",
+    "category": "fractions",
+    "hint": "Think of how many slices are missing to make 8."
+  },
+  {
+    "question": "What is the next number in the sequence: 3, 6, 9, __?",
+    "answer": "12",
+    "category": "patterns",
+    "hint": "The numbers are going up by 3."
+  },
+  {
+    "question": "What is 23 + 19?",
+    "answer": "42",
+    "category": "addition",
+    "hint": "Add the tens, then the ones."
+  },
+  {
+    "question": "What is 80 - 14?",
+    "answer": "66",
+    "category": "subtraction",
+    "hint": "Subtract the ones first."
+  },
+  {
+    "question": "What is 6 × 7?",
+    "answer": "42",
+    "category": "multiplication",
+    "hint": "Think of 6 groups of 7."
+  },
+  {
+    "question": "What is 81 ÷ 9?",
+    "answer": "9",
+    "category": "division",
+    "hint": "How many times does 9 fit into 81?"
+  },
+  {
+    "question": "What fraction is left if you eat \\( \\frac{3}{6} \\) from a pizza with 6 slices?",
+    "answer": "3/6",
+    "answer_second": "1/2",
+    "category": "fractions",
+    "hint": "Subtract 3 from 6."
+  },
+  {
+    "question": "What number comes next in the sequence: 5, 10, 15, __?",
+    "answer": "20",
+    "category": "patterns",
+    "hint": "These numbers are going up by 5."
+  },
+  {
+    "question": "What is 66 + 34?",
+    "answer": "100",
+    "category": "addition",
+    "hint": "Add the tens, then the ones."
+  },
+  {
+    "question": "What is 93 - 47?",
+    "answer": "46",
+    "category": "subtraction",
+    "hint": "Subtract the tens, then the ones."
+  },
+  {
+    "question": "What is 8 × 6?",
+    "answer": "48",
+    "category": "multiplication",
+    "hint": "Think of 8 groups of 6."
+  },
+  {
+    "question": "What is 72 ÷ 8?",
+    "answer": "9",
+    "category": "division",
+    "hint": "How many times does 8 fit into 72?"
+  },
+  {
+    "question": "What fraction of a pizza is left if you eat \\( \\frac{4}{8} \\)?",
+    "answer": "4/8",
+    "answer_second": "1/2",
+    "category": "fractions",
+    "hint": "Subtract 4 from 8."
+  },
+  {
+    "question": "What is the next number in the sequence: 7, 14, 21, __?",
+    "answer": "28",
+    "category": "patterns",
+    "hint": "These numbers are going up by 7."
+  },
+  {
+    "question": "What is 100 + 25?",
+    "answer": "125",
+    "category": "addition",
+    "hint": "Add the tens first."
+  },
+  {
+    "question": "What is 50 - 16?",
+    "answer": "34",
+    "category": "subtraction",
+    "hint": "Subtract the ones first."
+  },
+  {
+    "question": "What is 7 × 8?",
+    "answer": "56",
+    "category": "multiplication",
+    "hint": "Think of 7 groups of 8."
+  },
+  {
+    "question": "What is 63 ÷ 7?",
+    "answer": "9",
+    "category": "division",
+    "hint": "How many times does 7 fit into 63?"
+  },
+  {
+    "question": "What fraction of a pizza is left if you eat \\( \\frac{1}{3} \\) from a pizza with 3 slices?",
+    "answer": "2/3",
+    "category": "fractions",
+    "hint": "Subtract 1 from 3."
+  },
+  {
+    "question": "What number comes next in the sequence: 12, 24, 36, __?",
+    "answer": "48",
+    "category": "patterns",
+    "hint": "These numbers are going up by 12."
+  },
+  {
+    "question": "What is 79 + 11?",
+    "answer": "90",
+    "category": "addition",
+    "hint": "Add the ones, then the tens."
+  },
+  {
+    "question": "What is 37 - 15?",
+    "answer": "22",
+    "category": "subtraction",
+    "hint": "Subtract the tens, then the ones."
+  },
+  {
+    "question": "What is 5 × 9?",
+    "answer": "45",
+    "category": "multiplication",
+    "hint": "Think of 5 groups of 9."
+  },
+  {
+    "question": "What is 90 ÷ 10?",
+    "answer": "9",
+    "category": "division",
+    "hint": "How many times does 10 fit into 90?"
+  },
+  {
+    "question": "What fraction of a pizza is left if you eat \\( \\frac{3}{4} \\)?",
+    "answer": "1/4",
+    "category": "fractions",
+    "hint": "Subtract 3 from 4."
+  },
+  {
+    "question": "What is the next number in the pattern: 6, 12, 18, __?",
+    "answer": "24",
+    "category": "patterns",
+    "hint": "These numbers are going up by 6."
+  },
+  {
+    "question": "What is 47 + 53?",
+    "answer": "100",
+    "category": "addition",
+    "hint": "Add the tens, then the ones."
+  },
+  {
+    "question": "What is 88 - 28?",
+    "answer": "60",
+    "category": "subtraction",
+    "hint": "Subtract the tens first."
+  },
+  {
+    "question": "What is 6 × 6?",
+    "answer": "36",
+    "category": "multiplication",
+    "hint": "Think of 6 groups of 6."
+  },
+  {
+    "question": "What is 56 ÷ 8?",
+    "answer": "7",
+    "category": "division",
+    "hint": "How many times does 8 fit into 56?"
+  },
+  {
+    "question": "What fraction of a pizza is left if you eat \\( \\frac{2}{6} \\)?",
+    "answer": "4/6",
+    "answer_second": "2/3",
+    "category": "fractions",
+    "hint": "Subtract 2 from 6."
+  },
+  {
+    "question": "What is \\( \\frac{1}{4} + \\frac{1}{4} \\)?",
+    "answer": "\\( \\frac{1}{2} \\)",
+    "answer_second": "1/2",
+    "category": "fractions",
+    "hint": "Add the numerators and keep the same denominator."
+  },
+  {
+    "question": "What is \\( \\frac{3}{8} - \\frac{1}{8} \\)?",
+    "answer": "\\( \\frac{1}{4} \\)",
+    "answer_second": "1/4",
+    "category": "fractions",
+    "hint": "Subtract the numerators since the denominators are the same."
+  },
+  {
+    "question": "What is \\( \\frac{2}{5} + \\frac{2}{5} \\)?",
+    "answer": "\\( \\frac{4}{5} \\)",
+    "answer_second": "4/5",
+    "category": "fractions",
+    "hint": "Add the numerators and keep the same denominator."
+  },
+  {
+    "question": "What is \\( \\frac{5}{10} - \\frac{2}{10} \\)?",
+    "answer": "\\( \\frac{3}{10} \\)",
+    "answer_second": "3/10",
+    "category": "fractions",
+    "hint": "Subtract the numerators since the denominators are the same."
+  },
+  {
+    "question": "What is \\( \\frac{2}{6} + \\frac{1}{3} \\)?",
+    "answer": "\\( \\frac{1}{2} \\)",
+    "answer_second": "1/2",
+    "category": "fractions",
+    "hint": "Convert \\( \\frac{1}{3} \\) to \\( \\frac{2}{6} \\) to add."
+  },
+  {
+    "question": "What is \\( \\frac{3}{7} - \\frac{2}{7} \\)?",
+    "answer": "\\( \\frac{1}{7} \\)",
+    "answer_second": "1/7",
+    "category": "fractions",
+    "hint": "Subtract the numerators since the denominators are the same."
+  },
+  {
+    "question": "What is \\( \\frac{2}{8} + \\frac{2}{8} \\)?",
+    "answer": "\\( \\frac{1}{2} \\)",
+    "answer_second": "1/2",
+    "category": "fractions",
+    "hint": "Add the numerators and simplify the result."
+  },
+  {
+    "question": "What is \\( \\frac{4}{5} - \\frac{1}{5} \\)?",
+    "answer": "\\( \\frac{3}{5} \\)",
+    "answer_second": "3/5",
+    "category": "fractions",
+    "hint": "Subtract the numerators since the denominators are the same."
+  },
+  {
+    "question": "What is \\( \\frac{6}{10} + \\frac{2}{10} \\)?",
+    "answer": "\\( \\frac{8}{10} \\)",
+    "answer_second": "4/5",
+    "category": "fractions",
+    "hint": "Add the numerators and simplify the result."
+  },
+  {
+    "question": "What is \\( \\frac{7}{12} - \\frac{3}{12} \\)?",
+    "answer": "\\( \\frac{1}{3} \\)",
+    "answer_second": "1/3",
+    "category": "fractions",
+    "hint": "Subtract the numerators since the denominators are the same."
+  },
+  {
+    "question": "What is \\( \\frac{3}{10} + \\frac{4}{10} \\)?",
+    "answer": "\\( \\frac{7}{10} \\)",
+    "answer_second": "7/10",
+    "category": "fractions",
+    "hint": "Add the numerators and keep the same denominator."
+  },
+  {
+    "question": "What is \\( \\frac{5}{6} - \\frac{2}{6} \\)?",
+    "answer": "\\( \\frac{1}{2} \\)",
+    "answer_second": "1/2",
+    "category": "fractions",
+    "hint": "Subtract the numerators since the denominators are the same."
+  },
+  {
+    "question": "What is \\( \\frac{4}{9} + \\frac{5}{9} \\)?",
+    "answer": "\\( 1 \\)",
+    "category": "fractions",
+    "hint": "Add the numerators since the denominators are the same."
+  },
+  {
+    "question": "What is \\( \\frac{1}{2} - \\frac{1}{4} \\)?",
+    "answer": "\\( \\frac{1}{4} \\)",
+    "answer_second": "1/4",
+    "category": "fractions",
+    "hint": "Convert \\( \\frac{1}{2} \\) to \\( \\frac{2}{4} \\) to subtract."
+  },
+  {
+    "question": "What is \\( \\frac{3}{4} + \\frac{1}{2} \\)?",
+    "answer": "\\( \\frac{5}{4} \\)",
+    "answer_second": "1 1/4",
+    "category": "fractions",
+    "hint": "Convert \\( \\frac{1}{2} \\) to \\( \\frac{2}{4} \\) to add."
+  },
+  {
+    "question": "What is \\( \\frac{7}{10} - \\frac{2}{10} \\)?",
+    "answer": "\\( \\frac{1}{2} \\)",
+    "answer_second": "1/2",
+    "category": "fractions",
+    "hint": "Subtract the numerators since the denominators are the same."
+  },
+  {
+    "question": "What is \\( \\frac{1}{5} + \\frac{2}{5} \\)?",
+    "answer": "\\( \\frac{3}{5} \\)",
+    "answer_second": "3/5",
+    "category": "fractions",
+    "hint": "Add the numerators and keep the same denominator."
+  },
+  {
+    "question": "What is \\( \\frac{5}{8} - \\frac{3}{8} \\)?",
+    "answer": "\\( \\frac{1}{4} \\)",
+    "answer_second": "1/4",
+    "category": "fractions",
+    "hint": "Subtract the numerators since the denominators are the same."
+  },
+  {
+    "question": "What is \\( \\frac{2}{4} + \\frac{1}{2} \\)?",
+    "answer": "\\( 1 \\)",
+    "category": "fractions",
+    "hint": "Convert \\( \\frac{1}{2} \\) to \\( \\frac{2}{4} \\) to add."
+  },
+  {
+    "question": "What is \\( \\frac{6}{12} - \\frac{4}{12} \\)?",
+    "answer": "\\( \\frac{1}{3} \\)",
+    "answer_second": "1/6",
+    "category": "fractions",
+    "hint": "Subtract the numerators since the denominators are the same."
+  },
+  {
+    "question": "What is \\( \\frac{1}{4} + \\frac{3}{4} \\)?",
+    "answer": "1",
+    "category": "fractions",
+    "hint": "Add the numerators since the denominators are the same."
   }
 ]
