@@ -101,7 +101,7 @@ h1 {
   margin: auto;
   position: relative;
   max-height: 85vh;
-  min-height: 50vh;
+  min-height: 60vh;
   overflow-y: scroll;
   border-radius: 15px;
   background-color: #2A69AA;
@@ -202,11 +202,11 @@ a:hover {
 /**/
 
 .testGenerate {
-  gap: 22px;
+  gap: 30px;
   font-size: 20px;
   display: flex;
   flex-direction: row;
-  width: 60%;
+  width: 70%;
   margin: auto;
   justify-content: center;
   flex-wrap: wrap;
@@ -231,17 +231,21 @@ a:hover {
 }
 
 .testGenerate input[type="checkbox"] {
-  margin-right: 10px;
-  width: 20px;
-  height: 20px;
-  accent-color: #ffffff;
-  box-shadow: none;
+  margin-right: 10px !important;
+  width: 20px !important;
+  height: 20px !important;
+  accent-color: #ffffff !important;
+  box-shadow: none !important;
+  -webkit-appearance: none; /* Remove default appearance */
 }
 
 .testGenerate input[type="checkbox"]:checked {
-  box-shadow: 0 0 5pt 1pt black;
+  box-shadow: 0 0 5pt 1pt black !important;
 }
 
+input[type="checkbox"]:checked {
+  background-color:rgba(128, 255, 0,0.5);;
+}
 
 button:not(.bxs-home),
 .button-container input {
