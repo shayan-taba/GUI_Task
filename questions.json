@@ -339,7 +339,7 @@
     "hint": "How many times does 6 fit into 36?"
   },
   {
-    "question": "What is 3/4 of a pizza if you eat \\( \\frac{1}{4} \\)?",
+    "question": "What is the remaining fraction of a pizza if you eat \\( \\frac{1}{4} \\)?",
     "answer": "3/4",
     "category": "fractions",
     "hint": "Think of how many quarters are left."
@@ -485,8 +485,8 @@
     "hint": "How many times does 7 fit into 63?"
   },
   {
-    "question": "What fraction of a pizza is left if you eat \\( \\frac{1}{3} \\) from a pizza with 3 slices?",
-    "answer": "2/3",
+    "question": "How many slices of a pizza is left if you eat \\( \\frac{1}{3} \\) from a pizza with 3 slices?",
+    "answer": "2",
     "category": "fractions",
     "hint": "Subtract 1 from 3."
   },
@@ -649,7 +649,7 @@
   },
   {
     "question": "What is \\( \\frac{4}{9} + \\frac{5}{9} \\)?",
-    "answer": "\\( 1 \\)",
+    "answer": "1",
     "category": "fractions",
     "hint": "Add the numerators since the denominators are the same."
   },
@@ -690,7 +690,7 @@
   },
   {
     "question": "What is \\( \\frac{2}{4} + \\frac{1}{2} \\)?",
-    "answer": "\\( 1 \\)",
+    "answer": "1",
     "category": "fractions",
     "hint": "Convert \\( \\frac{1}{2} \\) to \\( \\frac{2}{4} \\) to add."
   },

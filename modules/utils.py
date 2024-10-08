@@ -13,7 +13,7 @@ def generate_test(categories):
     questions = load_questions()
     print(categories,'\n\n\n')
     filtered_questions = [q for q in questions if q['category'] in categories]
-    return random.sample(filtered_questions, 20)
+    return random.sample(filtered_questions, 5)
 
 '''
 def save_user_data(data):
