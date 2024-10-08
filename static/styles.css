@@ -97,7 +97,7 @@ h1 {
 }
 
 .container {
-  width: 60%;
+  width: 65%;
   margin: auto;
   position: relative;
   max-height: 85vh;
@@ -152,7 +152,8 @@ input[type="text"]:not(#username) {
   margin: 0px auto;
 }
 
-.hint, .answer {
+.hint,
+.answer {
   color: #FFF90A;
 }
 
@@ -242,7 +243,8 @@ a:hover {
 }
 
 
-button:not(.bxs-home), .button-container input {
+button:not(.bxs-home),
+.button-container input {
   margin: 0px auto 0px auto;
   padding: 10px 15px;
   border: none;
@@ -389,7 +391,8 @@ table.dataframe tbody tr:nth-child(even) td {
   color: black;
 }
 
-table.dataframe tbody tr, table.dataframe tbody tr td {
+table.dataframe tbody tr,
+table.dataframe tbody tr td {
   transition: 0.5s;
 }
 
@@ -415,6 +418,7 @@ table.table-responsive {
   width: 75%;
   margin: auto;
 }
+
 /* end */
 
 .mathSubmit {
@@ -443,7 +447,7 @@ form ::placeholder {
   font-size: 24px;
 }
 
-#closePopup > i {
+#closePopup>i {
   margin-right: 10px;
 }
 
@@ -454,4 +458,26 @@ form ::placeholder {
 .button-container a {
   color: white;
   text-decoration: underline !important;
+}
+
+@media (max-width: 1020px) {
+  .container {
+    width: 80%;
+    max-height: 90vh;
+    min-height: 60vh;
+  }
+  h1 {
+    font-size: 4.35rem;
+  }
+}
+
+@media (max-width: 650px) {
+  .container {
+    width: 90%;
+    max-height: 95vh;
+    min-height: 70vh;
+  }
+  h1 {
+    font-size: 4rem;
+  }
 }
