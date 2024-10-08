@@ -278,7 +278,7 @@
   },
   {
     "question": "What fraction of a pizza is left if you eat \\( \\frac{2}{8} \\) from a pizza with 8 slices?",
-    "answer": "\\( \\frac{6}{8} \\)",
+    "answer": "6/8",
     "answer_second": "3/4",
     "category": "fractions",
     "hint": "Subtract 2 from 8 to find how many slices are left."
