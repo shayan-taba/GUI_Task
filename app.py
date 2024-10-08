@@ -1,3 +1,4 @@
+import re
 import os
 import threading
 import webview
@@ -49,7 +50,7 @@ def test():
 
     if 'questions' not in session:
         return redirect(url_for('index'))
-    
+
     questions = session['questions']
     current_question = session.get('current_question', 0)
     correct_answer = questions[current_question]['answer']
@@ -59,33 +60,37 @@ def test():
         correct_answer_2 = correct_answer
     session['show_answer'] = 0
     feedback = None
-    
+
     if request.method == 'POST':
         user_answer = request.form.get('answer')
         #save_user_data(questions[current_question], bool(user_answer == correct_answer), time.time())
+
+        pattern = re.compile(r'^[0-9/]+$')
+        if not(pattern.match(user_answer)):
+            return render_template('test.html', question=questions[current_question], show_answer=session.get('show_answer'), feedback= {"validate":'Please only enter numbers and fractions'})
         
-        while session['attempts'] < 2:
-            if user_answer == correct_answer or user_answer == correct_answer_2:
+        if user_answer == correct_answer or user_answer == correct_answer_2:
+            if session['attempts'] <= 1: # on the 2nd attempt, the answer was wrong again. answer is shown. result recorded as false.
                 session['score'] += 1
-                save_user_data(questions[current_question], True, time.time())
-                session["attempts"] = 0
-                session['current_question'] += 1
+                save_user_data(questions[current_question], bool((user_answer == correct_answer) | (user_answer == correct_answer_2)), time.time())
+            session["attempts"] = 0
+            session['current_question'] += 1
+            if session['current_question'] >= len(questions): # all questions have been answered. test is finished. results page is rendered.
+                session['current_question'] -= 1
+                return redirect(url_for('results'))
+            return redirect(url_for('test'))
+        else:
+            session['attempts'] += 1
+            print('SASASA', session['attempts'])
+            if session['attempts'] >= 2: # on the 2nd attempt, the answer was wrong again. answer is shown. result recorded as false.
+                session['show_answer'] = correct_answer
+                if session['attempts'] == 2:
+                    save_user_data(questions[current_question], bool((user_answer == correct_answer) | (user_answer == correct_answer_2)), time.time())
+            else: # on t he 1st attempt, the answer was wrong. a hint is given. no result recorded yet in csv.
+                feedback = {"general":'That\'s not quite right',"hint": questions[current_question]['hint']}
+            return render_template('test.html', question=questions[current_question], show_answer=session.get('show_answer'), feedback=feedback)
 
-                if session['current_question'] >= len(questions):  # Test is finished
-                    return redirect(url_for('results'))
-                
-                return redirect(url_for('test'))
-            else:
-                session['attempts'] += 1
-                feedback = {"general": 'That\'s not quite right', "hint": questions[current_question]['hint']}
-                if session['attempts'] >= 2:
-                    session['show_answer'] = correct_answer
-                    save_user_data(questions[current_question], False, time.time())
-                    break
-
-        return render_template('test.html', question=questions[current_question], show_answer=session.get('show_answer'), feedback=feedback)
-
-    return render_template('test.html', question=questions[current_question], show_answer=session.get('show_answer', 0))
+    return render_template('test.html', question=questions[current_question], show_answer=session.get('show_answer',0))
 
 @app.route('/results')
 def results():

@@ -27,7 +27,9 @@
             </form>
             {% if feedback %}
             <p class="hint">
-                {% if question['category'] != "fractions" %}
+                {% if feedback["validate"] %}
+                {{ feedback["validate"]}}.
+                {% elif question['category'] != "fractions" %}
                 {{ feedback["general"] }}.
                 {% endif %}
                 {{ feedback["hint"] }}{% if question['category'] == "fractions" %} Remember to simplify any answers
