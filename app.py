@@ -219,6 +219,12 @@ def signal_handler(sig, frame):
         raise RuntimeError('Not running with the Werkzeug Server')
     func()
 
+def toggle_fullscreen(window):
+    # wait a few seconds before toggle fullscreen:
+    time.sleep(1)
+
+    window.toggle_fullscreen()
+    
 if __name__ == '__main__':
     if not os.path.exists(app.config['UPLOAD_FOLDER']):
         os.makedirs(app.config['UPLOAD_FOLDER'])
@@ -233,8 +239,9 @@ if __name__ == '__main__':
         flask_thread.start()
         
         try:
-            webview.create_window("Learning App for Kids", "http://127.0.0.1:8000/", fullscreen=True)
-            webview.start()
+            window = webview.create_window("Learning App for Kids", "http://127.0.0.1:8000/", fullscreen=True)
+            webview.start(toggle_fullscreen, window)
+
         except Exception as e:
             print(f"Error occurred in webview: {e}")
             os._exit(0)  # Ensure proper exit on failure
