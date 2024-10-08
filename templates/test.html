@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <title>Test</title>
@@ -8,33 +9,38 @@
     <!-- Include MathJax -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </head>
+
 <body>
-    <div class="container">
-        <h1>Test</h1>
-        <form action="{{ url_for('index') }}">
-            <button type="submit"><i class="bx bxs-home"></i> Home</button>
-        </form>
-        <form action="{{ url_for('test') }}" method="post">
-            <!-- Add the class 'math' to ensure MathJax processes this element -->
-            <p class="math">{{ question['question']|safe }}</p>
-            <input type="text" name="answer" required />
-            <button type="submit">Submit</button>
-        </form>
-        {% if feedback %}
-        <p>Feedback: {{ feedback }}</p>
-        {% endif %}
-        {% if show_answer %}
-        <p class="math">Answer: {{ show_answer|safe }}</p>
-        {% endif %}
+    <div class="background">
+
+        <div class="container">
+            <h1>Test</h1>
+            <form action="{{ url_for('index') }}">
+                <button type="submit"><i class="bx bxs-home"></i></button>
+            </form>
+            <form action="{{ url_for('test') }}" method="post">
+                <!-- Add the class 'math' to ensure MathJax processes this element -->
+                <p class="math">{{ question['question']|safe }}</p>
+                <input type="text" name="answer" required />
+                <button type="submit">Submit</button>
+            </form>
+            {% if feedback %}
+            <p>Feedback: {{ feedback }}</p>
+            {% endif %}
+            {% if show_answer %}
+            <p class="math">Answer: {{ show_answer|safe }}</p>
+            {% endif %}
+        </div>
+        <script>
+            // Re-render MathJax after the page loads
+            document.addEventListener("DOMContentLoaded", function () {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub, "question"]);
+                if (document.querySelector(".math")) {
+                    MathJax.Hub.Queue(["Typeset", MathJax.Hub, "answer"]);
+                }
+            });
+        </script>
     </div>
-    <script>
-        // Re-render MathJax after the page loads
-        document.addEventListener("DOMContentLoaded", function() {
-            MathJax.Hub.Queue(["Typeset", MathJax.Hub, "question"]);
-            if (document.querySelector(".math")) {
-                MathJax.Hub.Queue(["Typeset", MathJax.Hub, "answer"]);
-            }
-        });
-    </script>
 </body>
+
 </html>

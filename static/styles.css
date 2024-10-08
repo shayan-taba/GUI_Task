@@ -1,6 +1,7 @@
 /* styles.css */
 /**/
-body, .background {
+body,
+.background {
   font-family: "Space Grotesk", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
@@ -12,7 +13,8 @@ body, .background {
   justify-content: center;
 }
 
-html,body {
+html,
+body {
   min-height: 100vh;
 }
 
@@ -24,7 +26,7 @@ html,body {
 
 .background {
   position: relative;
-  width: 100%; 
+  width: 100%;
   height: 100vh;
   background-image: url(./assets/2111.w039.n003.5B.p1.5.jpg);
   background-size: cover;
@@ -38,12 +40,14 @@ html,body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.155); /* Black with 50% opacity */
-  z-index: 1; /* Ensure the overlay is above the background but below the content */
+  background-color: rgba(0, 0, 0, 0.155);
+  /* Black with 50% opacity */
+  z-index: 1;
+  /* Ensure the overlay is above the background but below the content */
 }
 
 h1 {
-  font-size: 4rem;
+  font-size: 5.25rem;
   font-family: "Space Grotesk", sans-serif;
   font-optical-sizing: auto;
   font-weight: bold;
@@ -58,7 +62,8 @@ h1 {
 
 ::placeholder {
   color: unset;
-  opacity: 0.5; /* Firefox */
+  opacity: 0.5;
+  /* Firefox */
 }
 
 #username {
@@ -96,7 +101,7 @@ h1 {
   margin: auto;
   position: relative;
   max-height: 85vh;
-  min-height: 50vh;
+  min-height: 55vh;
   overflow-y: scroll;
   border-radius: 15px;
   background-color: #2A69AA;
@@ -104,20 +109,23 @@ h1 {
   color: white;
   z-index: 2;
   text-align: center;
-  padding: 20px;
+  padding: 40px 0px;
   display: flex;
   border: black 8px solid;
-  gap: 1.5rem;
+  gap: 1.7rem;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
-h1, h3 {
+h1,
+h3 {
   color: white;
   text-shadow: 2px 2px black;
 }
 
-button, input[type="submit"], input[type="button"] {
+button:not(:has(.bxs-home)),
+input[type="submit"],
+input[type="button"] {
   font-size: 1.2em;
   padding: 10px 20px;
   background-color: #4CAF50;
@@ -126,12 +134,13 @@ button, input[type="submit"], input[type="button"] {
   border-radius: 10px;
   cursor: pointer;
   margin-top: 10px;
-  transition: background-color 0.3s, transform 0.2s;
+  transition: background-color 0.3s, transform 1s;
 }
 
-button:hover, input[type="submit"]:hover, input[type="button"]:hover {
-  background-color: #388E3C;
-  transform: scale(1.05);
+button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover {
+  transform: scale(1.075);
 }
 
 input[type="text"]:not(#username) {
@@ -188,20 +197,31 @@ a:hover {
 }
 
 @keyframes bounce {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-10px); }
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-10px);
+  }
 }
+
 /**/
 
 .testGenerate {
   gap: 22px;
   font-size: 20px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  width: 65%;
+  margin: auto;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .testGenerate label:nth-child(1) {
   font-weight: bold;
+  font-size: 130%;
 }
 
 .testGenerate input {
@@ -212,33 +232,109 @@ a:hover {
 .testGenerate label {
   display: flex;
   justify-content: center;
+  width: 40%;
   cursor: pointer;
+  gap: 15px;
 }
 
 .testGenerate input[type="checkbox"] {
-  margin-right: 10px; 
-  width: 20px; 
+  margin-right: 10px;
+  width: 20px;
   height: 20px;
-  outline: black solid 1px;
   accent-color: #ffffff;
+  box-shadow: none;
 }
+
+.testGenerate input[type="checkbox"]:checked {
+  box-shadow: 0 0 5pt 1pt black;
+}
+
 
 .testGenerate button {
   margin: 15px auto 0px auto;
   padding: 10px 15px;
-  border: none; 
+  border: none;
   border-radius: 5px;
   background-color: #fff;
   color: #2A69AA;
-  font-size: 26px;
   width: 40%;
   cursor: pointer;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 24px;
   border: black solid 4px;
   transition: background-color 0.3s;
 }
 
-.testGenerate button:hover {
-  background-color: #0056b3;
+.math {
+  font-size: 2.25rem;
+}
+
+form:has(.bxs-home) {
+  /* the home button */
+  width: fit-content;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+button:has(.bxs-home) {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 3rem;
+}
+
+ /* Style for the background page */
+ body {
+  font-family: Arial, sans-serif;
+}
+
+/* Style for the overlay */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Black with opacity */
+  z-index: 10;
+}
+
+/* Style for the popup */
+.popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border: black 8px solid;
+  z-index: 20;
+  width: 300px;
+  text-align: center;
+}
+
+/* Style for the popup links */
+.popup a {
+  display: block;
+  margin-top: 10px;
+  text-decoration: underline;
+  color: blue;
+}
+
+/* Button to close the popup */
+.close-btn {
+  display: block;
+  margin-top: 20px;
+  text-decoration: none;
+  color: red;
+}
+
+#openPopup {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }

@@ -27,16 +27,43 @@
                 <div id="hiddenSizing"></div>
             </h1>
             <form class="testGenerate" action="{{ url_for('start_test') }}" method="post">
-                <label>Select Categories:</label>
+                <label style="width: 100%;">Select Categories:</label>
                 <label><input type="checkbox" name="categories" value="fractions"> Fractions</label>
                 <label><input type="checkbox" name="categories" value="addition"> Addition</label>
                 <label><input type="checkbox" name="categories" value="subtraction"> Subtraction</label>
                 <label><input type="checkbox" name="categories" value="patterns"> Patterns</label>
                 <label><input type="checkbox" name="categories" value="multiplication"> Multiplication</label>
+                <label><input type="checkbox" name="categories" value="division"> Division</label>
                 <button type="submit">Start Test</button>
             </form>
-            <div><a href="{{ url_for('statistics') }}">View Statistics</a><br>
-                <a href="{{ url_for('view_data') }}">View User Data</a>
+            <div>
+                <!-- Link to open the popup -->
+                <a href="#" id="openPopup">Teacher's Tools</a>
+
+                <!-- Overlay -->
+                <div class="overlay" id="overlay"></div>
+
+                <!-- Popup content -->
+                <div class="popup" id="popup">
+                    <a href="{{ url_for('statistics') }}">View Statistics</a>
+                    <a href="{{ url_for('view_data') }}">View User Data</a>
+                    <a href="#" id="closePopup" class="close-btn">Close</a>
+                </div>
+
+                <script>
+                    // Minimal JavaScript to toggle popup and overlay visibility
+                    document.getElementById("openPopup").addEventListener("click", function (event) {
+                        event.preventDefault();
+                        document.getElementById("popup").style.display = "block";
+                        document.getElementById("overlay").style.display = "block";
+                    });
+
+                    document.getElementById("closePopup").addEventListener("click", function (event) {
+                        event.preventDefault();
+                        document.getElementById("popup").style.display = "none";
+                        document.getElementById("overlay").style.display = "none";
+                    });
+                </script>
             </div>
         </div>
     </div>
