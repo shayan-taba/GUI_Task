@@ -18,17 +18,24 @@
             <form action="{{ url_for('index') }}">
                 <button type="submit"><i class="bx bxs-home"></i></button>
             </form>
+
+            <p class="math">{{ question['question']|safe }}</p>
+
             <form action="{{ url_for('test') }}" method="post">
-                <!-- Add the class 'math' to ensure MathJax processes this element -->
-                <p class="math">{{ question['question']|safe }}</p>
-                <input type="text" name="answer" required />
-                <button type="submit">Submit</button>
+                <input autocomplete="off" placeholder="Enter answer here" type="text" name="answer" required />
+                <button class="mathSubmit" type="submit">Submit</button>
             </form>
             {% if feedback %}
-            <p>Feedback: {{ feedback }}</p>
+            <p class="hint">
+                {% if question['category'] != "fractions" %}
+                  {{ feedback["general"] }}.
+                {% endif %}
+                {{ feedback["hint"] }}{% if question['category'] == "fractions" %} Remember to simplify any answers given as fractions.{% endif %}
+              </p>
+              
             {% endif %}
             {% if show_answer %}
-            <p class="math">Answer: {{ show_answer|safe }}</p>
+            <p class="math answer">Answer: {{ show_answer|safe }}</p>
             {% endif %}
         </div>
         <script>
