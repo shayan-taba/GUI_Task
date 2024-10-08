@@ -31,11 +31,11 @@ def index():
 @app.route('/start_test', methods=['POST'])
 def start_test():
     categories = request.form.getlist('categories')
-    print(categories)
     questions = generate_test(categories)
     session['questions'] = questions
     session['current_question'] = 0
     session['attempts'] = 0
+    session['score'] = 0
     return redirect(url_for('test'))
 
 def print_session():
@@ -44,7 +44,7 @@ def print_session():
 
 @app.route('/test', methods=['GET', 'POST'])
 def test():
-    print(print_session()) ### TESTING
+    print(print_session(),"PSPSPS") ### TESTING
 
     if 'questions' not in session:
         return redirect(url_for('index'))
@@ -61,19 +61,25 @@ def test():
     
     if request.method == 'POST':
         user_answer = request.form.get('answer')
-        save_user_data(questions[current_question], bool(user_answer == correct_answer), time.time())
+        #save_user_data(questions[current_question], bool(user_answer == correct_answer), time.time())
         
         if user_answer == correct_answer or user_answer == correct_answer_2:
+            if session['attempts'] <= 1: # on the 2nd attempt, the answer was wrong again. answer is shown. result recorded as false.
+                session['score'] += 1
+                save_user_data(questions[current_question], bool((user_answer == correct_answer) | (user_answer == correct_answer_2)), time.time())
             session["attempts"] = 0
             session['current_question'] += 1
-            if session['current_question'] >= len(questions):
+            if session['current_question'] >= len(questions): # all questions have been answered. test is finished. results page is rendered.
                 return redirect(url_for('results'))
             return redirect(url_for('test'))
         else:
             session['attempts'] += 1
-            if session['attempts'] >= 2:
+            print('SASASA', session['attempts'])
+            if session['attempts'] >= 2: # on the 2nd attempt, the answer was wrong again. answer is shown. result recorded as false.
                 session['show_answer'] = correct_answer
-            else:
+                if session['attempts'] == 2:
+                    save_user_data(questions[current_question], bool((user_answer == correct_answer) | (user_answer == correct_answer_2)), time.time())
+            else: # on t he 1st attempt, the answer was wrong. a hint is given. no result recorded yet in csv.
                 feedback = {"general":'That\'s not quite right',"hint": questions[current_question]['hint']}
             return render_template('test.html', question=questions[current_question], show_answer=session.get('show_answer'), feedback=feedback)
 
@@ -81,6 +87,7 @@ def test():
 
 @app.route('/results')
 def results():
+    print(session["score"],"FICTION")
     if 'questions' not in session:
         return redirect(url_for('index'))
 
@@ -125,9 +132,6 @@ def statistics():
         category_performance_chart = create_category_performance_chart(df)
         correct_pie_chart = create_correct_pie_chart(df)
         progress_line_chart = create_progress_line_chart(df)
-        
-        print(category_performance_chart)
-        print('mashallah')
 
         # Render the results page with the charts
         return render_template('statistics.html',
