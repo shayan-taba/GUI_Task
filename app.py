@@ -257,7 +257,7 @@ if __name__ == '__main__':
     signal.signal(signal.SIGINT, signal_handler)
     
     # Check for 'production' mode in the command-line arguments
-    if len(sys.argv) > 1 and sys.argv[1] == 'production':
+    if len(sys.argv) > 1 and sys.argv[1] == 'production' or True:
         flask_thread = threading.Thread(target=start_flask)
         flask_thread.daemon = True  # Ensure Flask exits when the main thread exits
         flask_thread.start()
