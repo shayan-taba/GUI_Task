@@ -39,11 +39,9 @@ Either use the **unzipped folder** method or **clone via Git**.
    ```bash  
    git clone \<repo-url\>  
    ```
-## Environment Setup
-
 Follow the steps below to set up the environment, install prerequisites, and run the application.
 
-## 3\. Set Up a Virtual Environment (optional)
+### 3\. Set Up a Virtual Environment (optional)
 
 - **Windows:**  
     
