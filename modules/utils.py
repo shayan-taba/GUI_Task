@@ -1,3 +1,7 @@
+"""Defines functions used by app.py to help centralise scripts that access external files.
+Help create test-generation randomly based on categories and reading or editing data.
+"""
+
 import json
 import pandas as pd
 import random
@@ -7,14 +11,15 @@ headers = ['category', 'correct', 'timestamp']  # Headers of CSV file
 
 
 def load_questions():
-    """ Loads the list of available questions """
+    """Loads the list of available questions."""
     with open('./static/assets/questions.json') as f:
         return json.load(f)
 
 
 def generate_test(categories):
-    """ Based on chosen categories, generates a test by randomly choosing a
-    certain amount of questions """
+    """Based on chosen categories, generates a test by randomly choosing a
+    certain amount of questions.
+    """
     questions = load_questions()
     print(categories, '\n\n\n')
     filtered_questions = [q for q in questions if q['category'] in categories]
@@ -22,12 +27,12 @@ def generate_test(categories):
 
 
 def load_user_data():
-    """ Uses Pandas read the CSV """
+    """Uses Pandas read the CSV."""
     return pd.read_csv('user_data/user_data.csv')
 
 
 def delete_user_data():
-    """ Deletes the USERNAME data and CSV data """
+    """Deletes the USERNAME data and CSV data."""
     file_path = 'user_data/user_data.csv'
     open(file_path, 'w').close()  # Deletes CSV
 
@@ -48,7 +53,7 @@ def delete_user_data():
 
 
 def save_user_data(question, correct, timestamp):
-    """Saves given parameters as CSV data record of results"""
+    """Saves given parameters as CSV data record of results."""
     file_path = 'user_data/user_data.csv'
 
     # Check if file exists and is not empty

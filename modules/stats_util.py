@@ -1,3 +1,5 @@
+"""Functions that use libraries to create charts based on the data."""
+
 import pandas as pd
 import matplotlib
 import matplotlib.pyplot as plt
@@ -10,7 +12,7 @@ matplotlib.use('Agg')
 
 
 def create_category_performance_chart(df):
-    """Create a bar chart for the performance of each category"""
+    """Create a bar chart for the performance of each category."""
     palette = {True: 'blue', False: 'red'}
     plt.figure(figsize=(10, 6))
     sns.countplot(x='category', hue='correct', data=df, palette=palette)
@@ -24,7 +26,7 @@ def create_category_performance_chart(df):
 
 
 def create_correct_pie_chart(df):
-    """Create a pie chart for correct answers"""
+    """Create a pie chart for correct answers."""
     correct_counts = df['correct'].value_counts()
 
     try:
@@ -43,7 +45,7 @@ def create_correct_pie_chart(df):
 
 
 def create_progress_line_chart(df):
-    """Create a line chart for progress over time"""
+    """Create a line chart for progress over time."""
 
     df['date'] = pd.to_datetime(df['timestamp'], unit='s').dt.date
 

@@ -1,5 +1,5 @@
 """This project is a learning application designed for Year 3-4 students to
-help them practice basic numeracy skills. """
+help them practice basic numeracy skills."""
 
 import mimetypes
 import re
@@ -44,7 +44,7 @@ app.secret_key = str(uuid.uuid4())
 
 @app.route("/")  # Home page
 def index():
-    """Home page where user navigates to all other pages and generates test"""
+    """Home page where user navigates to all other pages and generates test."""
     username = read_username()  # Reads the username from the file
     return render_template(
         "index.html", username=username
@@ -84,7 +84,8 @@ def print_session():
 )  # The actual questions of the test themselves
 def test():
     """Iterates through questions, handles question validation, handles
-    checking if answer is correct, handles d of 'hints', 'answers'. """
+    checking if answer is correct, handles of 'hints', 'answers'.
+    """
     if "questions" not in session:  # Error handling
         # If the user misnavigates to this page, but no test was generated it
         # redirects back to home.
@@ -246,7 +247,8 @@ def results():
 @app.route("/view_data")
 def view_data():
     """Turns data into table for the user to view. Also provides various
-    options for the user like deleting data. """
+    options for the user like deleting data.
+    """
     data = load_user_data()  # Gets CSV
     data_available = True
     if len(data) == 0:
@@ -267,7 +269,7 @@ def view_data():
 
 @app.route("/delete_data", methods=["POST"])  # If user wishes to delete data
 def delete_data():
-    """Deletes the username and CSV and go back home"""
+    """Deletes the username and CSV and go back home."""
     delete_user_data()
     return redirect(url_for("index"))
 
@@ -275,7 +277,8 @@ def delete_data():
 @app.route("/statistics")
 def statistics():
     """statsitics page uses modules ad libraries to create data into charts
-    that are shown """
+    that are shown.
+    """
     df = load_user_data()  # get CSV
 
     if len(df) > 0:  # If there is data
@@ -303,7 +306,7 @@ app.config["ALLOWED_EXTENSIONS"] = {"csv"}
 
 
 def allowed_file(filename):
-    """Checks if filetype is valid"""
+    """Checks if filetype is valid."""
     return (
         "." in filename
         and filename.rsplit(".", 1)[1].lower() in app.config["ALLOWED_EXTENSIONS"]
@@ -312,7 +315,7 @@ def allowed_file(filename):
 
 @app.route("/import_csv", methods=["POST"])  # If user wishes to import data.
 def import_csv():
-    """import prior version of csv data to be kept and used by the app."""
+    """Import prior version of csv data to be kept and used by the app."""
     if "file" not in request.files:
         return redirect(request.url)
 
@@ -376,7 +379,7 @@ def import_csv():
 
 @app.route("/export_csv")
 def export_csv():
-    """exports in downloads as csv"""
+    """Exports in downloads as CSV."""
     if os.path.exists(data_file):  # If the CSV file exists
         return send_file(data_file, as_attachment=True)  # Download it
     else:
@@ -421,7 +424,7 @@ def signal_handler(sig, frame):
 
 
 def toggle_fullscreen(window):
-    """wait a few seconds before toggle fullscreen"""
+    """wait a few seconds before toggle fullscreen."""
     time.sleep(0.5)
 
     window.toggle_fullscreen()
@@ -456,3 +459,4 @@ if __name__ == "__main__":
 
         print("Webview closed, shutting down Flask...")
         os._exit(0)  # Forcefully close any remaining threads
+
