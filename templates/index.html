@@ -17,7 +17,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" /> <!-- Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet"> <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <!-- Font -->
 </head>
 
 <body>
@@ -25,9 +26,11 @@
         <div class="container">
             <h1>Hello,<span>&nbsp;</span><input autofocus type="text" placeholder="username" id="username"
                     value="{{ username if username.strip() != '' else '' }}" autocomplete="off">
-                <div id="hiddenSizing"></div><!-- hidden element where the width of it determines the required width of the real element -->
+                <div id="hiddenSizing"></div>
+                <!-- hidden element where the width of it determines the required width of the real element -->
             </h1>
-            <form class="testGenerate" action="{{ url_for('start_test') }}" method="post">
+            <form onsubmit="return validateCheckboxes()" class="testGenerate" action="{{ url_for('start_test') }}" method="post"
+                >
                 <label style="width: 100%;">Select Categories:</label>
                 <label><input type="checkbox" name="categories" value="fractions"> Fractions</label>
                 <label><input type="checkbox" name="categories" value="addition"> Addition</label>
@@ -47,12 +50,14 @@
                 <!-- Popup content -->
                 <div class="popup" id="popup">
                     {% if CSV_ERROR %}
-                    <a id="CSV_ERROR" style="color: black; font-weight: bold;">CSV file format is incorrect. Please ensure it has 'category', 'correct', and 'timestamp'
+                    <a id="CSV_ERROR" style="color: black; font-weight: bold;">CSV file format is incorrect. Please
+                        ensure it has 'category', 'correct', and 'timestamp'
                         columns.</a>
                     {% endif %} <!-- Only shown after CSV upload error. Tells user of error. -->
                     <a href="{{ url_for('statistics') }}">View Statistics</a>
                     <a href="{{ url_for('view_data') }}">View User Data</a>
-                    <a href="#" id="closePopup" class="close-btn"><i class='bx bxs-x-circle'></i></a> <!-- Close the popup -->
+                    <a href="#" id="closePopup" class="close-btn"><i class='bx bxs-x-circle'></i></a>
+                    <!-- Close the popup -->
                 </div>
 
                 <script>
@@ -80,6 +85,16 @@
         </div>
     </div>
     <script>
+        function validateCheckboxes() { // once user starts to generate test  
+                var checkboxes = document.querySelectorAll('input[name="categories"]');
+                for (var i = 0; i < checkboxes.length; i++) {
+                    if (checkboxes[i].checked) {
+                        return true; // At least one checkbox is checked. Continues.
+                    }
+                }
+                alert("Please select at least one category.");
+                return false; // No checkbox is checked. Generate error and doesn't continue.
+            }
         document.addEventListener('DOMContentLoaded', function () {
             setTimeout(function () {
                 const inputField = document.getElementById('username');
@@ -90,9 +105,9 @@
                 // the prior code only runs once the home page is first loaded and checks what the width of the username should be and  accordingly sets it.
 
                 inputField.addEventListener('input', function () { // whenever any key is pressed in the input, the width of the required input is obtained then set for the real input element.
-                    const username = inputField.value; 
+                    const username = inputField.value;
 
-                    document.getElementById("hiddenSizing").innerText = inputField.value.trim() != "" ? inputField.value : "Username"; 
+                    document.getElementById("hiddenSizing").innerText = inputField.value.trim() != "" ? inputField.value : "Username";
                     document.getElementById("username").style.width = `${document.querySelector("#hiddenSizing").offsetWidth}px`;
 
                     fetch('/save_username', {
@@ -107,6 +122,7 @@
                         .catch(error => console.error('Error:', error));
                 });
             }, 500); // 600 milliseconds = 0.6 second delay in order to wait for page and the name to load before getting the width of the hidden name element.
+
         });
 
     </script>
