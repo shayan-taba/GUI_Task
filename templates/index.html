@@ -26,9 +26,9 @@
         <div class="container">
             <h1>Hello,<span>&nbsp;</span><input autofocus type="text" placeholder="username" id="username"
                     value="{{ username if username.strip() != '' else '' }}" autocomplete="off">
-                <div id="hiddenSizing"></div>
-                <!-- hidden element where the width of it determines the required width of the real element -->
             </h1>
+            <div id="hiddenSizing"></div>
+            <!-- hidden element where the width of it determines the required width of the real element -->
             <form onsubmit="return validateCheckboxes()" class="testGenerate" action="{{ url_for('start_test') }}" method="post"
                 >
                 <label style="width: 100%;">Select Categories:</label>

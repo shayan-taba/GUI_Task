@@ -1,9 +1,7 @@
-/* styles.css */
-/**/
 body,
 .background {
   font-family: "Space Grotesk", sans-serif;
-  font-optical-sizing: auto;
+  font-optical-sizing:auto;
   font-style: normal;
   margin: 0;
   padding: 0;
@@ -46,7 +44,7 @@ body {
   /* Ensure the overlay is above the background but below the content */
 }
 
-h1 {
+h1, #hiddenSizing {
   font-size: 5.25rem;
   font-family: "Space Grotesk", sans-serif;
   font-optical-sizing: auto;
@@ -472,18 +470,18 @@ form ::placeholder {
     max-height: 90vh;
     min-height: 60vh;
   }
-  h1 {
+  h1, #hiddenSizing {
     font-size: 4.35rem;
   }
 }
 
-@media (max-width: 770) {
+@media (max-width: 770px) {
   .container {
     width: 90%;
     max-height: 95vh;
     min-height: 70vh;
   }
-  h1 {
+  h1, #hiddenSizing {
     font-size: 4rem;
   }
 }
