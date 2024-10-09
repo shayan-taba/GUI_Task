@@ -1,4 +1,3 @@
-import json
 import pandas as pd
 import matplotlib
 import matplotlib.pyplot as plt
@@ -8,6 +7,7 @@ import io
 import base64
 
 matplotlib.use('Agg')
+
 
 def create_category_performance_chart(df):
     """Create a bar chart for the performance of each category"""
@@ -22,28 +22,33 @@ def create_category_performance_chart(df):
     img.seek(0)
     return base64.b64encode(img.getvalue()).decode('utf-8')
 
+
 def create_correct_pie_chart(df):
     """Create a pie chart for correct answers"""
     correct_counts = df['correct'].value_counts()
-    
+
     try:
         plt.figure(figsize=(6, 6))
-        plt.pie(correct_counts, labels=['Correct', 'Incorrect'], autopct='%1.1f%%', colors=['#66b3ff', '#ff6666'])
+        plt.pie(correct_counts, labels=['Correct', 'Incorrect'],
+                autopct='%1.1f%%', colors=['#66b3ff', '#ff6666'])
         plt.title('Correct vs Incorrect Answers')
         img = io.BytesIO()
         plt.savefig(img, format='png')
         img.seek(0)
         return base64.b64encode(img.getvalue()).decode('utf-8')
-    except:
-        # :ikely caused by there not being at least one correct and incorrect values
+    except Exception as e:
+        # Likely caused by there not being at least one correct and incorrect
+        # values
         return "error"
+
 
 def create_progress_line_chart(df):
     """Create a line chart for progress over time"""
-    
+
     df['date'] = pd.to_datetime(df['timestamp'], unit='s').dt.date
 
-    df_summary = df.groupby(['date', 'category']).agg({'correct': 'mean'}).reset_index()
+    df_summary = df.groupby(['date', 'category']).agg(
+        {'correct': 'mean'}).reset_index()
 
     plt.figure(figsize=(10, 6))
     sns.barplot(x='date', y='correct', hue='category', data=df_summary)
