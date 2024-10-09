@@ -475,7 +475,7 @@ form ::placeholder {
   }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 770) {
   .container {
     width: 90%;
     max-height: 95vh;
