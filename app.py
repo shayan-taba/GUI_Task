@@ -8,7 +8,7 @@ import signal
 from flask import Flask, render_template, request, redirect, url_for, jsonify, session, send_file
 import json
 import pandas as pd
-from modules.utils import generate_test, get_statistics, get_category_stats, save_user_data, load_user_data, delete_user_data, headers
+from modules.utils import generate_test, save_user_data, load_user_data, delete_user_data, headers
 from modules.stats_util import create_category_performance_chart, create_progress_line_chart, create_correct_pie_chart
 import uuid
 from werkzeug.utils import secure_filename
@@ -145,7 +145,8 @@ def statistics():
 app.config['UPLOAD_FOLDER'] = 'uploads/' # Folder directory for CSV uploads
 app.config['ALLOWED_EXTENSIONS'] = {'csv'}
 
-def allowed_file(filename): # Checks if filetype is valid
+def allowed_file(filename):
+    """ Checks if filetype is valid """
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
 
@@ -221,8 +222,8 @@ def save_username_route():
     save_username(username)
     return jsonify({'message': 'Username saved successfully!'})
 
-# Run Flask app in a thread
 def start_flask():
+    """ Run Flask app in a thread """
     app.run(port=8000)
 
 def signal_handler(sig, frame): 
@@ -249,7 +250,7 @@ if __name__ == '__main__':
     # Check for 'production' mode in the command-line arguments
     if len(sys.argv) > 1 and sys.argv[1] == 'production' or True: # This always run and is reduntant. It is only here for development purposes so it can be switched off for debugging.
         flask_thread = threading.Thread(target=start_flask)
-        flask_thread.daemon = True  # Ensure Flask exits when the main thread exits
+        flask_thread.daemon = True # Ensure Flask exits when the main thread exits
         flask_thread.start()
         
         try:
@@ -258,7 +259,7 @@ if __name__ == '__main__':
 
         except Exception as e:
             print(f"Error occurred in webview: {e}")
-            os._exit(0)  # Ensure proper exit on failure
+            os._exit(0) # Ensure proper exit on failure
         
         print("Webview closed, shutting down Flask...")
-        os._exit(0)  # Forcefully close any remaining threads
+        os._exit(0) # Forcefully close any remaining threads

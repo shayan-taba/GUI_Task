@@ -9,8 +9,8 @@ import base64
 
 matplotlib.use('Agg')
 
-# Create a bar chart for the performance of each category
 def create_category_performance_chart(df):
+    """Create a bar chart for the performance of each category"""
     palette = {True: 'blue', False: 'red'}
     plt.figure(figsize=(10, 6))
     sns.countplot(x='category', hue='correct', data=df, palette=palette)
@@ -22,10 +22,9 @@ def create_category_performance_chart(df):
     img.seek(0)
     return base64.b64encode(img.getvalue()).decode('utf-8')
 
-# Create a pie chart for correct answers
 def create_correct_pie_chart(df):
+    """Create a pie chart for correct answers"""
     correct_counts = df['correct'].value_counts()
-    
     
     try:
         plt.figure(figsize=(6, 6))
@@ -36,11 +35,12 @@ def create_correct_pie_chart(df):
         img.seek(0)
         return base64.b64encode(img.getvalue()).decode('utf-8')
     except:
-        # likely caused by there not being 1+ correct and incorrect values
+        # :ikely caused by there not being at least one correct and incorrect values
         return "error"
 
-# Create a line chart for progress over time
 def create_progress_line_chart(df):
+    """Create a line chart for progress over time"""
+    
     df['date'] = pd.to_datetime(df['timestamp'], unit='s').dt.date
 
     df_summary = df.groupby(['date', 'category']).agg({'correct': 'mean'}).reset_index()
