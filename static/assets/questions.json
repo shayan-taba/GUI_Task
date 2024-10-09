@@ -461,8 +461,8 @@
     "hint": "These numbers are going up by 7."
   },
   {
-    "question": "What is 100 + 25?",
-    "answer": "125",
+    "question": "What is 60 + 25?",
+    "answer": "85",
     "category": "addition",
     "hint": "Add the tens first."
   },

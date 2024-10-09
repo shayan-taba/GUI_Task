@@ -123,7 +123,7 @@ def test():
             r"^[0-9/]+$"
         )  # Regex that validates the data to check if its "NORMAL". Only
         # allows integers and the "/" sign.
-        if not (pattern.match(user_answer)) or (
+        while not (pattern.match(user_answer)) or (
             user_answer.isdigit() and int(user_answer) > 100
         ):  # If its not NORMAL data that is not between 0-100 or a fraction
             return render_template(
