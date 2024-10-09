@@ -159,32 +159,51 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
 
+import mimetypes
+
 @app.route('/import_csv', methods=['POST'])
 def import_csv():
     if 'file' not in request.files:
         return redirect(request.url)
+    
     file = request.files['file']
+    
+    # Check if the filename is empty
     if file.filename == '':
         return redirect(request.url)
+    
+    # Check if the file extension is allowed
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+
+        # Check the MIME type of the file to ensure it's a CSV
+        mime_type, _ = mimetypes.guess_type(filename)
+        if mime_type != 'text/csv':
+            print('abcdefabcdefg')
+            return render_template('index.html', CSV_ERROR=True, username=read_username(), error="Invalid file type. Please upload a CSV.")
+        
+        # Save the file
         file.save(filepath)
         
-        # Read CSV file into DataFrame
+        # Process the CSV (you already have this part)
         df = pd.read_csv(filepath)
-        
-        # Clean DataFrame: drop empty rows and columns
-        df.dropna(how='all', inplace=True)  # Drop rows where all elements are NaN
-        df.dropna(axis=1, how='all', inplace=True)  # Drop columns where all elements are NaN
+        df.dropna(how='all', inplace=True)
+        df.dropna(axis=1, how='all', inplace=True)
         
         # Validate DataFrame columns and data
         if 'category' in df.columns and 'correct' in df.columns and 'timestamp' in df.columns:
             df.to_csv(data_file, mode='w', header=headers, index=False)
         else:
-            return "CSV file format is incorrect. Please ensure it has 'category', 'correct', and 'timestamp' columns."
+            print('abcdefabcdef')
+            return render_template('index.html', CSV_ERROR=True, username=read_username())
         
         return redirect(url_for('index'))
+    else:
+        print('abcdefabcdef')
+        return render_template('index.html', CSV_ERROR=True, username=read_username(), error="Invalid file type. Please upload a CSV.")
+    return redirect(url_for('index'))
+
 
 @app.route('/export_csv')
 def export_csv():
