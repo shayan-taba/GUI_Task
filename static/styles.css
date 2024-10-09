@@ -330,7 +330,7 @@ body {
   z-index: 20;
   width: 300px;
   text-align: center;
-  width: 40vw;
+  width: 55vw;
   font-size: 150%;
 }
 
@@ -484,4 +484,13 @@ form ::placeholder {
   h1 {
     font-size: 4rem;
   }
+}
+
+.popup:has(#CSV_ERROR) {
+  width: 80vw;
+}
+
+button:has(.bxs-home) {
+  padding: 0;
+  width: 100%;
 }

@@ -46,22 +46,34 @@
 
                 <!-- Popup content -->
                 <div class="popup" id="popup">
+                    {% if CSV_ERROR %}
+                    <a id="CSV_ERROR" style="color: black; font-weight: bold;">CSV file format is incorrect. Please ensure it has 'category', 'correct', and 'timestamp'
+                        columns.</a>
+                    {% endif %}
                     <a href="{{ url_for('statistics') }}">View Statistics</a>
                     <a href="{{ url_for('view_data') }}">View User Data</a>
                     <a href="#" id="closePopup" class="close-btn"><i class='bx bxs-x-circle'></i></a>
                 </div>
 
                 <script>
-                    document.getElementById("openPopup").addEventListener("click", function (event) {
-                        event.preventDefault();
-                        document.getElementById("popup").style.display = "block";
-                        document.getElementById("overlay").style.display = "block";
-                    });
+                    document.addEventListener('DOMContentLoaded', function () {
 
-                    document.getElementById("closePopup").addEventListener("click", function (event) {
-                        event.preventDefault();
-                        document.getElementById("popup").style.display = "none";
-                        document.getElementById("overlay").style.display = "none";
+                        if ("{{ CSV_ERROR }}") {
+                            event.preventDefault();
+                            document.getElementById("popup").style.display = "block";
+                            document.getElementById("overlay").style.display = "block";
+                        }
+                        document.getElementById("openPopup").addEventListener("click", function (event) {
+                            event.preventDefault();
+                            document.getElementById("popup").style.display = "block";
+                            document.getElementById("overlay").style.display = "block";
+                        });
+
+                        document.getElementById("closePopup").addEventListener("click", function (event) {
+                            event.preventDefault();
+                            document.getElementById("popup").style.display = "none";
+                            document.getElementById("overlay").style.display = "none";
+                        });
                     });
                 </script>
             </div>
@@ -69,32 +81,32 @@
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-    // Add 1 second delay
-    setTimeout(function () {
-        const inputField = document.getElementById('username');
+            // Add 1 second delay
+            setTimeout(function () {
+                const inputField = document.getElementById('username');
 
-        document.getElementById("hiddenSizing").innerText = inputField.value.trim() != "" ? inputField.value : "Username";
-        document.getElementById("username").style.width = `${document.querySelector("#hiddenSizing").offsetWidth}px`;
+                document.getElementById("hiddenSizing").innerText = inputField.value.trim() != "" ? inputField.value : "Username";
+                document.getElementById("username").style.width = `${document.querySelector("#hiddenSizing").offsetWidth}px`;
 
-        inputField.addEventListener('input', function () {
-            const username = inputField.value;
+                inputField.addEventListener('input', function () {
+                    const username = inputField.value;
 
-            document.getElementById("hiddenSizing").innerText = inputField.value.trim() != "" ? inputField.value : "Username";
-            document.getElementById("username").style.width = `${document.querySelector("#hiddenSizing").offsetWidth}px`;
+                    document.getElementById("hiddenSizing").innerText = inputField.value.trim() != "" ? inputField.value : "Username";
+                    document.getElementById("username").style.width = `${document.querySelector("#hiddenSizing").offsetWidth}px`;
 
-            fetch('/save_username', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ username: username })
-            })
-            .then(response => response.json())
-            .then(data => console.log(data.message))
-            .catch(error => console.error('Error:', error));
+                    fetch('/save_username', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ username: username })
+                    })
+                        .then(response => response.json())
+                        .then(data => console.log(data.message))
+                        .catch(error => console.error('Error:', error));
+                });
+            }, 500); // 600 milliseconds = 0.6 second
         });
-    }, 500); // 600 milliseconds = 0.6 second
-});
 
     </script>
 </body>
