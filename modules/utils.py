@@ -42,6 +42,7 @@ def delete_user_data():
         df.to_csv(file_path, index=False)
 
 def save_user_data(question, correct, timestamp):
+    """Saves given parameters as CSV data record of results"""
     file_path = 'user_data/user_data.csv'
 
     # Check if file exists and is not empty
