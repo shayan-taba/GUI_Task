@@ -5,34 +5,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Results</title>
-    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" /> <!-- icons -->
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
 </head>
 
 <body>
-    <div class="background">
+    <div class="background"> <!-- For the background image -->
 
         <div class="container" id="statsContainer">
             <h1>Student Results Overview</h1>
             <form action="{{ url_for('index') }}">
                 <button type="submit"><i class="bx bxs-home"></i></button>
-            </form>
+            </form> <!-- Return back home button -->
 
-            <div id="statsFlex">
-            {% if data_available %}
-            <h2>Performance by Category</h2>
-            <img src="data:image/png;base64,{{ category_chart }}" alt="Category Performance Chart">
+            <div id="statsFlex"> <!-- Flexbox for all graphs -->
+                {% if data_available %} <!-- Any graph can only be shown given data is available i.e., questions have been answered -->
+                <h2>Performance by Category</h2>
+                <img src="data:image/png;base64,{{ category_chart }}" alt="Category Performance Chart"> 
 
-            {% if pie_chart != "error" %}
-            <h2>Correct vs Incorrect Answers</h2>
-            <img src="data:image/png;base64,{{ pie_chart }}" alt="Correct vs Incorrect Pie Chart">
-            {% endif %}
+                {% if pie_chart != "error" %}
+                <h2>Correct vs Incorrect Answers</h2>
+                <img src="data:image/png;base64,{{ pie_chart }}" alt="Correct vs Incorrect Pie Chart">
+                {% endif %} <!-- only shown if at least one correct and incorrect answer in the data -->
 
-            <h2>Progress Over Time</h2>
-            <img src="data:image/png;base64,{{ line_chart }}" alt="Progress Over Time Chart">
-            {% else %}
-            <h2 class="error">No data have been saved. To view statistics, please attempt questions.</h2>
-            {% endif %}
+                <h2>Progress Over Time</h2>
+                <img src="data:image/png;base64,{{ line_chart }}" alt="Progress Over Time Chart">
+                {% else %}
+                <h2 class="error">No data have been saved. To view statistics, please attempt questions.</h2>
+                {% endif %}
             </div>
 
         </div>

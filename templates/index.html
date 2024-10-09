@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Select all checkboxes by default
+            // Select all checkboxes by default once the app is loaded
             const checkboxes = document.querySelectorAll('input[type="checkbox"]');
             checkboxes.forEach(checkbox => {
                 checkbox.checked = true;
@@ -16,16 +16,16 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" /> <!-- Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet"> <!-- Font -->
 </head>
 
 <body>
-    <div class="background">
+    <div class="background"> <!-- For the background image -->
         <div class="container">
             <h1>Hello,<span>&nbsp;</span><input autofocus type="text" placeholder="username" id="username"
                     value="{{ username if username.strip() != '' else '' }}" autocomplete="off">
-                <div id="hiddenSizing"></div>
+                <div id="hiddenSizing"></div><!-- hidden element where the width of it determines the required width of the real element -->
             </h1>
             <form class="testGenerate" action="{{ url_for('start_test') }}" method="post">
                 <label style="width: 100%;">Select Categories:</label>
@@ -36,12 +36,12 @@
                 <label><input type="checkbox" name="categories" value="multiplication"> Multiplication</label>
                 <label><input type="checkbox" name="categories" value="division"> Division</label>
                 <button type="submit">Start Test</button>
-            </form>
+            </form> <!-- Categories to choose from before test is generated -->
             <div>
                 <!-- Link to open the popup -->
                 <a href="#" id="openPopup">Teacher's Tools</a>
 
-                <!-- Overlay -->
+                <!-- Dark opacity overlay once the popup is clicked -->
                 <div class="overlay" id="overlay"></div>
 
                 <!-- Popup content -->
@@ -49,10 +49,10 @@
                     {% if CSV_ERROR %}
                     <a id="CSV_ERROR" style="color: black; font-weight: bold;">CSV file format is incorrect. Please ensure it has 'category', 'correct', and 'timestamp'
                         columns.</a>
-                    {% endif %}
+                    {% endif %} <!-- Only shown after CSV upload error. Tells user of error. -->
                     <a href="{{ url_for('statistics') }}">View Statistics</a>
                     <a href="{{ url_for('view_data') }}">View User Data</a>
-                    <a href="#" id="closePopup" class="close-btn"><i class='bx bxs-x-circle'></i></a>
+                    <a href="#" id="closePopup" class="close-btn"><i class='bx bxs-x-circle'></i></a> <!-- Close the popup -->
                 </div>
 
                 <script>
@@ -62,18 +62,18 @@
                             event.preventDefault();
                             document.getElementById("popup").style.display = "block";
                             document.getElementById("overlay").style.display = "block";
-                        }
+                        } // automatically trigger popup if redirected from a CSV upload error
                         document.getElementById("openPopup").addEventListener("click", function (event) {
                             event.preventDefault();
                             document.getElementById("popup").style.display = "block";
                             document.getElementById("overlay").style.display = "block";
-                        });
+                        }); // if show popup button clicked, popup and overlay is shown
 
                         document.getElementById("closePopup").addEventListener("click", function (event) {
                             event.preventDefault();
                             document.getElementById("popup").style.display = "none";
                             document.getElementById("overlay").style.display = "none";
-                        });
+                        }); // if close button is triggered, overlay and popup are hidden.
                     });
                 </script>
             </div>
@@ -81,17 +81,18 @@
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Add 1 second delay
             setTimeout(function () {
                 const inputField = document.getElementById('username');
 
                 document.getElementById("hiddenSizing").innerText = inputField.value.trim() != "" ? inputField.value : "Username";
                 document.getElementById("username").style.width = `${document.querySelector("#hiddenSizing").offsetWidth}px`;
 
-                inputField.addEventListener('input', function () {
-                    const username = inputField.value;
+                // the prior code only runs once the home page is first loaded and checks what the width of the username should be and  accordingly sets it.
 
-                    document.getElementById("hiddenSizing").innerText = inputField.value.trim() != "" ? inputField.value : "Username";
+                inputField.addEventListener('input', function () { // whenever any key is pressed in the input, the width of the required input is obtained then set for the real input element.
+                    const username = inputField.value; 
+
+                    document.getElementById("hiddenSizing").innerText = inputField.value.trim() != "" ? inputField.value : "Username"; 
                     document.getElementById("username").style.width = `${document.querySelector("#hiddenSizing").offsetWidth}px`;
 
                     fetch('/save_username', {
@@ -100,12 +101,12 @@
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify({ username: username })
-                    })
+                    }) // save username via this api handled by the app.py python code.
                         .then(response => response.json())
                         .then(data => console.log(data.message))
                         .catch(error => console.error('Error:', error));
                 });
-            }, 500); // 600 milliseconds = 0.6 second
+            }, 500); // 600 milliseconds = 0.6 second delay in order to wait for page and the name to load before getting the width of the hidden name element.
         });
 
     </script>

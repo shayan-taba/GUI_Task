@@ -25,17 +25,16 @@ def create_category_performance_chart(df):
 # Create a pie chart for correct answers
 def create_correct_pie_chart(df):
     correct_counts = df['correct'].value_counts()
+    
+    
     try:
-        if len(df)>15:
-            plt.figure(figsize=(6, 6))
-            plt.pie(correct_counts, labels=['Correct', 'Incorrect'], autopct='%1.1f%%', colors=['#66b3ff', '#ff6666'])
-            plt.title('Correct vs Incorrect Answers')
-            img = io.BytesIO()
-            plt.savefig(img, format='png')
-            img.seek(0)
-            return base64.b64encode(img.getvalue()).decode('utf-8')
-        else:
-            raise Exception
+        plt.figure(figsize=(6, 6))
+        plt.pie(correct_counts, labels=['Correct', 'Incorrect'], autopct='%1.1f%%', colors=['#66b3ff', '#ff6666'])
+        plt.title('Correct vs Incorrect Answers')
+        img = io.BytesIO()
+        plt.savefig(img, format='png')
+        img.seek(0)
+        return base64.b64encode(img.getvalue()).decode('utf-8')
     except:
         # likely caused by there not being 1+ correct and incorrect values
         return "error"

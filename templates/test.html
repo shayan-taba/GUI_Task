@@ -7,58 +7,58 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <!-- Include MathJax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script> <!-- allows for displaying math like fractions -->
 </head>
 
 <body>
-    <div class="background">
+    <div class="background"> <!-- For the background image -->
 
         <div class="container">
             <h1>Test</h1>
             <form action="{{ url_for('index') }}">
                 <button type="submit"><i class="bx bxs-home"></i></button>
-            </form>
+            </form> <!-- Home button -->
 
-            <p class="math">{{ question['question']|safe }}</p>
+            <p class="math">{{ question['question']|safe }}</p> <!-- The math question itself, which may be rendered in LaTeX format -->
 
             <form action="{{ url_for('test') }}" method="post">
                 <input autocomplete="off" placeholder="Enter answer here" type="text" name="answer" required />
                 <button class="mathSubmit" type="submit">Submit</button>
-            </form>
-            {% if feedback %}
+            </form> <!-- Where the user answers the question -->
+            {% if feedback %} <!-- Only displayed after at least 1 false attempt -->
             <p class="hint">
-                {% if feedback["validate"] %}
+                {% if feedback["validate"] %} <!-- Only displayed if non integer, negative, over 100 or non fraction values are entered -->
                 {{ feedback["validate"]}}.
-                {% elif question['category'] != "fractions" %}
+                {% elif question['category'] != "fractions" %} <!--  To prevent lengthy feedback, general feedback like "Try Again!" are only given when its not a fraction question -->
                 {{ feedback["general"] }}.
                 {% endif %}
                 {{ feedback["hint"] }}{% if question['category'] == "fractions" %} Remember to simplify any answers
-                given as fractions.{% endif %}
+                given as fractions.{% endif %}  <!-- Only displayed if the answer if a fraction so it can remind about simplification -->
             </p>
 
             {% endif %}
-            {% if show_answer %}
+            {% if show_answer %} <!-- only given if user fails the first 2 attempts-->
             <p class="math answer">Answer: {{ show_answer|safe }}</p>
             {% endif %}
         </div>
-        <div class="overlay" id="overlay"></div>
-        <div class="popup" id="popup">
+        <div class="overlay" id="overlay"></div> <!-- dark transparent overlay for popup - initially off until all questions finished. -->
+        <div class="popup" id="popup"> <!-- popup that only shows if all questions are answered -->
             <a href="{{ url_for('index') }}">
-                {% if score == number_of_questions %}
+                {% if score == number_of_questions %} <!-- only if 100%  -->
                 Amazing job! You got {{ score }} out of {{ number_of_questions }} right!
-                {% elif score >= number_of_questions * 0.8 %}
+                {% elif score >= number_of_questions * 0.8 %} <!-- only if 80%  -->
                 Great work! You got {{ score }} out of {{ number_of_questions }} right!
-                {% elif score >= number_of_questions * 0.5 %}
+                {% elif score >= number_of_questions * 0.5 %} <!-- only if 50%  -->
                 Good effort! You got {{ score }} out of {{ number_of_questions }} right!
-                {% else %}
+                {% else %} <!-- only if below 50% -->
                 Keep trying! You got {{ score }} out of {{ number_of_questions }} right!
                 {% endif %}
             </a>
-            <a href="{{ url_for('index') }}" id="closePopup" class="close-btn"><i class='bx bxs-x-circle'></i></a>
+            <a href="{{ url_for('index') }}" id="closePopup" class="close-btn"><i class='bx bxs-x-circle'></i></a> <!-- go back to home page -->
         </div>
         <script>
             document.addEventListener("DOMContentLoaded", function () {
-                if ("{{ finished }}") {
+                if ("{{ finished }}") { // if this page is redirected to in order to provide the result popup, this code shows the overlay and popup
                     event.preventDefault();
                     document.getElementById("popup").style.display = "block";
                     document.getElementById("overlay").style.display = "block";
@@ -66,7 +66,7 @@
             })
         </script>
         <script>
-            // Re-render MathJax after the page loads
+            // Re-render MathJax after the page loads. Like LaTeX, it renders the math, especially fractions, in a mathematic way.
             document.addEventListener("DOMContentLoaded", function () {
                 MathJax.Hub.Queue(["Typeset", MathJax.Hub, "question"]);
                 if (document.querySelector(".math")) {
