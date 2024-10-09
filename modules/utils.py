@@ -6,7 +6,7 @@ import os
 headers = ['category', 'correct', 'timestamp']
 
 def load_questions():
-    with open('./questions.json') as f:
+    with open('./static/assets/questions.json') as f:
         return json.load(f)
 
 def generate_test(categories):
