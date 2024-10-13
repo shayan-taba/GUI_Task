@@ -7,19 +7,26 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <!-- Include MathJax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script> <!-- allows for displaying math like fractions -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <!-- allows for displaying math like fractions -->
 </head>
 
 <body>
     <div class="background"> <!-- For the background image -->
 
         <div class="container">
+            <div class="homeBox">
+                <!-- Return back home button -->
+                <form action="/">
+                    <button type="submit">
+                        <i style="color: white" class="bx bxs-home"></i>
+                    </button>
+                </form>
+            </div>
             <h1>Test</h1>
-            <form action="{{ url_for('index') }}">
-                <button type="submit"><i class="bx bxs-home"></i></button>
-            </form> <!-- Home button -->
 
-            <p class="math">{{ question['question']|safe }}</p> <!-- The math question itself, which may be rendered in LaTeX format -->
+            <p class="math">{{ question['question']|safe }}</p>
+            <!-- The math question itself, which may be rendered in LaTeX format -->
 
             <form action="{{ url_for('test') }}" method="post">
                 <input autocomplete="off" placeholder="Enter answer here" type="text" name="answer" required />
@@ -27,13 +34,16 @@
             </form> <!-- Where the user answers the question -->
             {% if feedback %} <!-- Only displayed after at least 1 false attempt -->
             <p class="hint">
-                {% if feedback["validate"] %} <!-- Only displayed if non integer, negative, over 100 or non fraction values are entered -->
+                {% if feedback["validate"] %}
+                <!-- Only displayed if non integer, negative, over 100 or non fraction values are entered -->
                 {{ feedback["validate"]}}.
-                {% elif question['category'] != "fractions" %} <!--  To prevent lengthy feedback, general feedback like "Try Again!" are only given when its not a fraction question -->
+                {% elif question['category'] != "fractions" %}
+                <!--  To prevent lengthy feedback, general feedback like "Try Again!" are only given when its not a fraction question -->
                 {{ feedback["general"] }}.
                 {% endif %}
                 {{ feedback["hint"] }}{% if question['category'] == "fractions" %} Remember to simplify any answers
-                given as fractions.{% endif %}  <!-- Only displayed if the answer if a fraction so it can remind about simplification -->
+                given as fractions.{% endif %}
+                <!-- Only displayed if the answer if a fraction so it can remind about simplification -->
             </p>
 
             {% endif %}
@@ -41,7 +51,8 @@
             <p class="math answer">Answer: {{ show_answer|safe }}</p>
             {% endif %}
         </div>
-        <div class="overlay" id="overlay"></div> <!-- dark transparent overlay for popup - initially off until all questions finished. -->
+        <div class="overlay" id="overlay"></div>
+        <!-- dark transparent overlay for popup - initially off until all questions finished. -->
         <div class="popup" id="popup"> <!-- popup that only shows if all questions are answered -->
             <a href="{{ url_for('index') }}">
                 {% if score == number_of_questions %} <!-- only if 100%  -->
@@ -54,7 +65,8 @@
                 Keep trying! You got {{ score }} out of {{ number_of_questions }} right!
                 {% endif %}
             </a>
-            <a href="{{ url_for('index') }}" id="closePopup" class="close-btn"><i class='bx bxs-x-circle'></i></a> <!-- go back to home page -->
+            <a href="{{ url_for('index') }}" id="closePopup" class="close-btn"><i class='bx bxs-x-circle'></i></a>
+            <!-- go back to home page -->
         </div>
         <script>
             document.addEventListener("DOMContentLoaded", function () {

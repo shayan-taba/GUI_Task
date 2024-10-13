@@ -1,7 +1,7 @@
 body,
 .background {
   font-family: "Space Grotesk", sans-serif;
-  font-optical-sizing:auto;
+  font-optical-sizing: auto;
   font-style: normal;
   margin: 0;
   padding: 0;
@@ -44,7 +44,8 @@ body {
   /* Ensure the overlay is above the background but below the content */
 }
 
-h1, #hiddenSizing {
+h1,
+#hiddenSizing {
   font-size: 5.25rem;
   font-family: "Space Grotesk", sans-serif;
   font-optical-sizing: auto;
@@ -99,7 +100,7 @@ h1, #hiddenSizing {
   margin: auto;
   position: relative;
   max-height: 85vh;
-  min-height: 60vh;
+  min-height: 57vh;
   overflow-y: scroll;
   border-radius: 15px;
   background-color: #2A69AA;
@@ -234,7 +235,8 @@ a:hover {
   height: 20px !important;
   accent-color: #ffffff !important;
   box-shadow: none !important;
-  -webkit-appearance: none; /* Remove default appearance */
+  -webkit-appearance: none;
+  /* Remove default appearance */
 }
 
 .testGenerate input[type="checkbox"]:checked {
@@ -242,7 +244,8 @@ a:hover {
 }
 
 input[type="checkbox"]:checked {
-  background-color:rgba(128, 255, 0,0.5);;
+  background-color: rgba(128, 255, 0, 0.5);
+  ;
 }
 
 button:not(.bxs-home),
@@ -282,20 +285,13 @@ button:not(.bxs-home),
   margin: 0 auto;
 }
 
-form:has(.bxs-home) {
-  /* the home button */
-  width: fit-content;
-  position: fixed;
-  top: 40px;
-  right: 40px;
-}
-
-button:has(.bxs-home), button:has(.bxs-home) i {
+button:has(.bxs-home),
+button:has(.bxs-home) i {
   background: none;
   border: none;
   color: white;
-  font-size: 5rem;
-  color: #2A69AA;
+  font-size: 2rem;
+  /*color: #2A69AA;*/
   text-decoration: underline;
 }
 
@@ -470,7 +466,9 @@ form ::placeholder {
     max-height: 90vh;
     min-height: 60vh;
   }
-  h1, #hiddenSizing {
+
+  h1,
+  #hiddenSizing {
     font-size: 4.35rem;
   }
 }
@@ -481,7 +479,9 @@ form ::placeholder {
     max-height: 95vh;
     min-height: 70vh;
   }
-  h1, #hiddenSizing {
+
+  h1,
+  #hiddenSizing {
     font-size: 4rem;
   }
 }
@@ -493,4 +493,19 @@ form ::placeholder {
 button:has(.bxs-home) {
   padding: 0;
   width: 100%;
+}
+
+.homeBox>form {
+  width: fit-content;
+  margin-right: 40px;
+  position: absolute;
+}
+
+.homeBox {
+  position: relative;
+  height: 1px;
+  justify-content: flex-end;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 40px;
 }
