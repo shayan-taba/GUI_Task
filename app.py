@@ -438,7 +438,7 @@ if __name__ == "__main__":
     signal.signal(signal.SIGINT, signal_handler)
 
     # Check for 'production' mode in the command-line arguments
-    if len(sys.argv) > 1 and sys.argv[1] == "production":
+    if len(sys.argv) > 1 and sys.argv[1] == "production" or True:
         # This conditoinal always run and is reduntant. It is only here for
         # development purposes so it can be switched off for debugging.
         flask_thread = threading.Thread(target=start_flask)
