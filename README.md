@@ -45,7 +45,7 @@ Follow the steps below to set up the environment, install prerequisites, and run
 
 - **Windows:**  
     
-  Open Command Prompt and navigate to the project directory (replace `project-folder` with the name of the folder from the cloned repo):  
+  Open Command Prompt and navigate to the project directory (replace `project-folder` with the name of the folder from the cloned repo). Only navigate with "cd" if you are not already in that directory in your chosen terminal:  
     
   ```bash  
   cd \<project-folder\>  
@@ -57,7 +57,7 @@ Follow the steps below to set up the environment, install prerequisites, and run
     
 - **macOS:**  
     
-  Open Terminal and navigate to the project directory (replace `project-folder` with the name of the folder from the cloned repo):  
+  Open Terminal and navigate to the project directory (replace `project-folder` with the name of the folder from the cloned repo) Only navigate with "cd" if you are not already in that directory in your chosen terminal:  
     
   ```bash  
   cd \<project-folder\>  

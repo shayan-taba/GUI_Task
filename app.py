@@ -453,7 +453,7 @@ if __name__ == "__main__":
 
         try:
             window = webview.create_window(
-                "Learning App for Kids", "http://127.0.0.1:8000/", fullscreen=True
+                "Years 3 and 4 Math App", "http://127.0.0.1:8000/", fullscreen=True
             )
             webview.start(toggle_fullscreen, window)
 
