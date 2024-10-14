@@ -28,7 +28,10 @@ def generate_test(categories):
 
 def load_user_data():
     """Uses Pandas read the CSV."""
-    return pd.read_csv('user_data/user_data.csv')
+    if os.path.exists("user_data/user_data.csv"):  # If the CSV file exists
+        return pd.read_csv('user_data/user_data.csv')
+    else:
+        return False
 
 
 def delete_user_data():

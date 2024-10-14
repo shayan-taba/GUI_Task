@@ -132,8 +132,7 @@ def test():
                 question=questions[current_question],
                 show_answer=session.get("show_answer"),
                 feedback={
-                    "validate": "Please only enter integers from 0-100 or "
-                                "fractions "
+                    "validate": "Please only enter integers from 0-100 or " "fractions "
                 },
             )
             # This displays the previous question, doesn't count the previous
@@ -159,7 +158,6 @@ def test():
 
             session["attempts"] = (
                 0  # Resets this counter as this question is finished and the
-
                 # next one is to be shown
             )
             session[
@@ -251,17 +249,24 @@ def view_data():
     """
     data = load_user_data()  # Gets CSV
     data_available = True
-    if len(data) == 0:
+
+    try:
+        if data & len(data) > 0:
+            data["timestamp"] = pd.to_datetime(data["timestamp"], unit="s").apply(
+                lambda x: x.strftime("%Y-%m-%d %H:%M:%S")
+            )  # Convert all timestamps to human friendly.
+            table_html = data.to_html(
+                classes="table table-striped", index=False
+            )  # Converts CSV to HTML table.
+    except Exception as e:
         data_available = (
             False  # If no data yet in CSV, this will be passed onto Jinja2
             # template.
         )
-    data["timestamp"] = pd.to_datetime(data["timestamp"], unit="s").apply(
-        lambda x: x.strftime("%Y-%m-%d %H:%M:%S")
-    )  # Convert all timestamps to human friendly.
-    table_html = data.to_html(
-        classes="table table-striped", index=False
-    )  # Converts CSV to HTML table.
+        return render_template(
+        "view_data.html", data_available=data_available
+    )
+
     return render_template(
         "view_data.html", data=table_html, data_available=data_available
     )
@@ -280,25 +285,25 @@ def statistics():
     that are shown.
     """
     df = load_user_data()  # get CSV
+    try:
+        if df & len(df) > 0:  # If there is data
+            # Create charts. For more details refer to ./modules/stats_util.py
+            category_performance_chart = create_category_performance_chart(df)
+            correct_pie_chart = create_correct_pie_chart(df)
+            progress_line_chart = create_progress_line_chart(df)
 
-    if len(df) > 0:  # If there is data
-        # Create charts. For more details refer to ./modules/stats_util.py
-        category_performance_chart = create_category_performance_chart(df)
-        correct_pie_chart = create_correct_pie_chart(df)
-        progress_line_chart = create_progress_line_chart(df)
-
-        # Render the results page with the charts
+            # Render the results page with the charts
+            return render_template(
+                "statistics.html",
+                category_chart=category_performance_chart,
+                pie_chart=correct_pie_chart,
+                line_chart=progress_line_chart,
+                data_available=True,
+            )
+    except Exception as e:
         return render_template(
-            "statistics.html",
-            category_chart=category_performance_chart,
-            pie_chart=correct_pie_chart,
-            line_chart=progress_line_chart,
-            data_available=True,
-        )
-
-    return render_template(
-        "statistics.html", data_available=False
-    )  # Only runs if there was no data in CSV.
+            "statistics.html", data_available=False
+        )  # Only runs if there was no data in CSV.
 
 
 app.config["UPLOAD_FOLDER"] = "uploads/"  # Folder directory for CSV uploads
@@ -448,8 +453,7 @@ if __name__ == "__main__":
 
         try:
             window = webview.create_window(
-                "Learning App for Kids", "http://127.0.0.1:8000/",
-                fullscreen=True
+                "Learning App for Kids", "http://127.0.0.1:8000/", fullscreen=True
             )
             webview.start(toggle_fullscreen, window)
 
@@ -459,7 +463,6 @@ if __name__ == "__main__":
 
         print("Webview closed, shutting down Flask...")
         os._exit(0)  # Forcefully close any remaining threads
-        
+
     else:
         app.run(port=8000)
-
